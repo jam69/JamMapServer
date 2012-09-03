@@ -40,12 +40,16 @@ public class ShpRepos implements DataRepos {
 	public ShpRepos(String path2,boolean loadAttr){
 		System.out.println("Loading SHP:"+path2);
 		path=path2;
+		env=new Rect();
 		this.loadAttr=loadAttr;
 		try {
 			ShapefileReader shf=new ShapefileReader(path);
 			
 			Iterator<Geometry> it=shf.iterator();
+			int cont=0;
 			while(it.hasNext()){
+				cont++;
+				if(cont%10000==0)System.out.println("Leidas:"+cont);
 				Geometry g=(Geometry)it.next();
 				Entity ent=new Entity();
 				ent.setGeom(g);
@@ -76,6 +80,7 @@ public class ShpRepos implements DataRepos {
 				world.get(cont++).setAllAttrs(ent);
 			}
 			dbf.close();
+			System.out.println("   Leidos datos Alfa");
 		} catch (JDBFException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

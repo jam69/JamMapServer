@@ -14,7 +14,9 @@ public class PaintFilter extends EntityFilter {
 		super(cond);
 		this.simbology=simb;
 	}
-	public void paint(Mapper m, Graphics2D g,Entity ent){
-		    if(checkCond(ent)) paint(m, g, ent);
+	public boolean paint(Mapper m, Graphics2D g,Entity ent){
+		    boolean b=checkCond(ent);
+		    if(b)simbology.paint(m, g, ent);
+		    return b;
      }
 }

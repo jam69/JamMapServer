@@ -9,6 +9,10 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import com.jrsolutions.mapserver.database.DataRepos;
+import com.jrsolutions.mapserver.database.shp.ShpRepos;
+import com.jrsolutions.mapserver.render.Simbology;
+
 public class Mapa {
 
 	private String name;
@@ -51,11 +55,22 @@ public class Mapa {
 	public POILayer createPOILayer(String file,String x, String y,String attr){
 		return new POILayer(mapper,file,x,y,attr);
 	}
-	
+	*/
 	public ShpRepos createShpRepos(String file,boolean alfa){
 		return new ShpRepos(file,alfa);
 	}
 	
+	public GeomLayer createGeomLayer(DataRepos dataRepos){
+		GeomLayer gLayer=new GeomLayer(dataRepos);
+		layers.add(gLayer);
+		return gLayer;
+	}
+	
+	public Simbology createSymboly(){
+		return new Simbology();
+	}
+	
+	/*
 	public GeomStyles createStyles(int a, int b, int c){
 		GeomStyles s=new GeomStyles();
 		s.surfaceColor=new Color(a);

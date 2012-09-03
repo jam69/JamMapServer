@@ -9,8 +9,8 @@ import com.jrsolutions.mapserver.servlet.Mapper;
 
 public class NodoSimb extends NodeSimbology {
 
-	private Color color;
-	private int  size;
+	private Color color=Color.white;
+	private int  size=5;
 	private int offx=0;
 	private int offy=0;
 	private int justif=0;
@@ -20,7 +20,14 @@ public class NodoSimb extends NodeSimbology {
 	public final static int RECT = 1;
 	public final static int CRUZ = 2;
 	public final static int EQUIS = 3;
-	
+
+	public NodoSimb(int id){
+		this.id=id;
+	}
+	public NodoSimb(int id,int color){
+		this.id=id;
+		this.color=new Color(color);
+	}
 	@Override
 	public void paint(Mapper m, Graphics2D g,Point p, Entity ent) {
 		

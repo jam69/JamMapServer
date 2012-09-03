@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.jrsolutions.mapserver.condition.CondAttr;
+import com.jrsolutions.mapserver.condition.CondTrue;
 import com.jrsolutions.mapserver.database.DataRepos;
 import com.jrsolutions.mapserver.database.Entity;
+import com.jrsolutions.mapserver.render.Simbology;
 
 public class GeomLayer {
 
@@ -44,13 +47,19 @@ public class GeomLayer {
 		this.minZoom = minZoom;
 	}
 
-
+	public void where(String attr_name, String attr_value,Simbology simb){
+		addFilter(new PaintFilter( new CondAttr(attr_name,attr_value),simb));
+    }
+	public void setDefault(Simbology simb){
+		addFilter(new PaintFilter( new CondTrue(),simb));
+    }
 	
 	void render(Mapper m,Graphics2D g){
 		Iterator<Entity> it=repos.getIterator(m.getZoom());
 		while(it.hasNext()){
+			Entity ent=it.next();
 			for(PaintFilter f:filtros){
-				f.paint(m,g,it.next());
+				f.paint(m,g,ent);
 			}
 		}
 	}

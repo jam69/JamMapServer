@@ -8,6 +8,27 @@
 		 shpLayer.setSurfColor(255,250,100);
 		 mapa.add(shpLayer);		
 */
+
+         var dataRepos = mapa.createShpRepos("/Data/Madrid/comunidad_de_madrid_highway.shp",true);
+         var geomLayer = mapa.createGeomLayer(dataRepos);
+         geomLayer.setZoomLimits(11,19);
+		 
+         var simb= mapa.createSymboly()
+            .addLineColor(0xcccccc)
+            .addNodeSymbol(1,0xaa00aa)
+            .addSurfaceColor(0xffaaaa);
+
+         var green= mapa.createSymboly()
+            .addLineColor(0x00ff00);
+ 
+         var red= mapa.createSymboly()
+            .addLineColor(0xff0000);
+ 
+         geomLayer.setDefault(simb);
+         geomLayer.where("TYPE","residential",green);
+         geomLayer.where("TYPE","motorway",red);
+         
+         /*
 		 var shpLayer= mapa.createShpLayer("/Data/Madrid/comunidad_de_madrid_highway.shp",true);
 		 shpLayer.setEdgeColor(255,255,255);
 		 shpLayer.setSurfColor(100,100,100);
@@ -76,7 +97,7 @@
 		 
 		 shpLayer.setPainter(painter);
 		 mapa.add(shpLayer);		
-
+*/
 /*
 		 var shpLayer= mapa.createShpLayer("/Data/Madrid/comunidad_de_madrid_water.shp","NAME");
 		 shpLayer.setEdgeColor(0,0,255);
@@ -136,7 +157,7 @@
 		 mapa.add(shpLayer);		
 */
 		
-		 
+		/* 
 		 var shpLayer= mapa.createShpLayer("/Data/spain/places.shp",true);
 		 shpLayer.setEdgeColor(255,0,255);
 		 shpLayer.setSurfColor(255,100,255);
@@ -150,6 +171,8 @@
 		 
 		 shpLayer.setZoomLimits(5,19);
 		 mapa.add(shpLayer);		
+		 
+		 */
  /*		 
 		 var shpLayer= mapa.createShpLayer("/Data/spain/points.shp",true);
 		 shpLayer.setLineColor(255,255,100);

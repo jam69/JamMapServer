@@ -14,6 +14,10 @@ public class SurfFillColor extends SurfaceSimbology{
 
 	private Color color;
 	
+	public SurfFillColor(Color color){
+		this.color=color;
+	}
+	
 	@Override
 	public void paint(Mapper mapper, Graphics2D g, Polygon s, Entity ent) {
 		Iterator<LineString> it=s.iterator();

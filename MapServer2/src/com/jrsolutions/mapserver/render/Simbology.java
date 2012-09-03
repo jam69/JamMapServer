@@ -19,7 +19,22 @@ public class Simbology {
 	private final List<NodeSimbology> nodePrims = new ArrayList<NodeSimbology>();
 	private final List<LineSimbology> linePrims = new ArrayList<LineSimbology>();
 	private final List<SurfaceSimbology> surfacePrims = new ArrayList<SurfaceSimbology>();
-	  
+	
+	
+	/*API*/
+	public Simbology addLineColor(int color){
+		linePrims.add(new LineColor(new Color(color)));
+		return this;
+	}
+	public Simbology addNodeSymbol(int simb,int color){
+		nodePrims.add(new NodoSimb(simb,color));
+		return this;
+	}
+	public Simbology addSurfaceColor(int color){
+		surfacePrims.add(new SurfFillColor(new Color(color)));
+		return this;
+	}
+	
 	public void paint(Mapper m, Graphics2D g, Entity ent){
 		paint(m,g,ent.getGeom(),ent);
 	}
@@ -51,10 +66,6 @@ public class Simbology {
 				}
 			}		
 		}
-		
-		
-	
-		
 	
 	}
 
