@@ -10,12 +10,15 @@
 */
 
          var dataRepos = mapa.createShpRepos("/Data/Madrid/comunidad_de_madrid_highway.shp",true);
+   //      var dataRepos = mapa.createShpRepos("/Data/Spain/roads.shp",true);
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(11,19);
 		 
          var simb= mapa.createSymboly()
             .addLineColor(0xcccccc)
             .addNodeSymbol(1,0xaa00aa)
+            .addStartPointText(0 ,0,0xcccccc,"NAME")
+            .addStartPointText(0,10,0xffcccc,"TYPE")
             .addSurfaceColor(0xffaaaa);
 
          var green= mapa.createSymboly()
@@ -26,6 +29,7 @@
  
          geomLayer.setDefault(simb);
          geomLayer.where("TYPE","residential",green);
+         geomLayer.where("TYPE","tertiary",green);
          geomLayer.where("TYPE","motorway",red);
          
          /*

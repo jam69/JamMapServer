@@ -30,6 +30,14 @@ public class Simbology {
 		nodePrims.add(new NodoSimb(simb,color));
 		return this;
 	}
+	public Simbology addNodeText(int offx,int offy, int color, String attrName){
+		nodePrims.add(new NodeText(offx, offy, color, attrName));
+		return this;
+	}
+	public Simbology addStartPointText(int offx,int offy, int color, String attrName){
+		linePrims.add(new LineStartPoint(new NodeText(offx, offy, color, attrName)));
+		return this;
+	}
 	public Simbology addSurfaceColor(int color){
 		surfacePrims.add(new SurfFillColor(new Color(color)));
 		return this;
