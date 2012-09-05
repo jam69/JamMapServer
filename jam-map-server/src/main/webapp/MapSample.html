@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Mapa Simple</title>
+<script  type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+</head>
+<body>
+<h1>Un mapa Web</h1>
+<script>
+var url="http://localhost:8080/MapServer/simple-map";
+var min_x= -180;
+var min_y=  -90;
+var max_x=   90;
+var max_y=  180;
+
+function zoomIn(){
+	var rx=(max_x - min_x)/2;
+	var cx=(max_x + min_x)/2;
+	var ry=(max_y - min_y)/2;
+	var cy=(max_y + min_y)/2;
+	
+	min_x=cx-rx/2;
+	min_y=cy-ry/2;
+	max_x=cx+rx/2;
+	max_y=cy+ry/2;
+
+	redraw();
+}
+
+function zoomOut(){
+	
+	redraw();
+}
+
+function redraw(){
+	var aux=url+"?"+"mx="+min_x+"&my="+min_y+"&Mx="+max_x+"&My="+max_y;
+	$("#sampleMap").attr("src",aux);
+}
+
+$(document).ready(function(){
+	   redraw();
+	 });
+</script>
+<button id=zoom_in onclick="zoomIn()">-</button>
+<button id=zoom_out onclick="zoomOut()">+</button>
+<br>
+<img id="sampleMap" width=300 height=200 />
+
+</body>
+</html>
