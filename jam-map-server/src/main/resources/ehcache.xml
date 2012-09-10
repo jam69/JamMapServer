@@ -681,18 +681,19 @@ Here is an example of CacheManager level resource tuning, which will use up to 4
     The defaultCache has an implicit name "default" which is a reserved cache name.
     -->
     <defaultCache
-           maxEntriesLocalHeap="0"
            eternal="false"
            timeToIdleSeconds="1200"
            timeToLiveSeconds="1200">
-      <terracotta/>
     </defaultCache>
 
      <cache name="uno"
-           maxEntriesLocalHeap="1000"
-           eternal="true"
+     	   eternal="true"
            memoryStoreEvictionPolicy="FIFO"/>
-    
+   
+    <cache name="memory"
+           eternal="true"
+           memoryStoreEvictionPolicy="LFU"/>
+  
     <!--
     Sample caches. Following are some example caches. Remove these before use.
     -->
