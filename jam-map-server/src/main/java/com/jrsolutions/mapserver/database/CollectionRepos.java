@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.jrsolutions.mapserver.database.datadefinition.TableDescriptor;
 import com.jrsolutions.mapserver.geometry.Rect;
 
 public class CollectionRepos implements DataRepos {
@@ -26,6 +27,31 @@ public class CollectionRepos implements DataRepos {
 	@Override
 	public Iterator<Entity> getIterator(Rect env) {
 		return getIterator(); // TODO
+	}
+
+	@Override
+	public TableDescriptor getDescription(){
+		// TODO
+		return null;
+	}
+	
+	@Override
+	public void create(TableDescriptor description){
+    	//TODO
+    }
+	
+	@Override
+	public void open(){
+		// TODO
+	}
+	@Override
+	public void close(){
+		// TODO
+	}
+	@Override
+	public boolean save(Entity entity){
+		// TODO
+		return false;
 	}
 
 }

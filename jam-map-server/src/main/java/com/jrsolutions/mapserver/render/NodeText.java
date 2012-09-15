@@ -18,18 +18,22 @@ public class NodeText extends NodeSimbology {
 	private int postion;
 	private Font font;
 	private String attrName;
+	private int zmin;
 	
 
-	public NodeText(int offx, int offy,int color,String attrName){
+	public NodeText(int offx, int offy,int color,String attrName,int zmin){
 		this.offx=offx;
 		this.offy=offy;
 		this.color=new Color(color);
 		this.attrName=attrName;
+		this.zmin=zmin;
 	}
+	
 
 	@Override
 	public void paint(Mapper m, Graphics2D g,Point p, Entity ent) {
 		
+		if(m.getZoomLevel()<zmin)return;
 		Object obj=ent.getAttr(attrName);
 		if(obj!=null){
 			int px= m.posX(p.getX())+offx;

@@ -10,6 +10,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import com.jrsolutions.mapserver.database.DataRepos;
+import com.jrsolutions.mapserver.database.MySqlRepos;
 import com.jrsolutions.mapserver.database.shp.ShpRepos;
 import com.jrsolutions.mapserver.render.Simbology;
 
@@ -39,25 +40,23 @@ public class Mapa {
 		layers.add(layer);
 	}
 	
-	public void pinta(Mapper mapper,Graphics2D gr,int zoom){
+	public void pinta(Mapper mapper,Graphics2D gr){
+		int zoom=mapper.getZoomLevel();
 		for(GeomLayer layer:layers){
 			if(layer.getMaxZoom() >= zoom && layer.getMinZoom() <= zoom){
 				layer.render(mapper,gr); // zoom TOFIX
 			}
 		}
 	}
-	/*
-	public ShpLayer createShpLayer(String file,boolean alfa){
-		return new ShpLayer(mapper,file,alfa);
-	}
+
+	// Create poiRepos
 	
-	
-	public POILayer createPOILayer(String file,String x, String y,String attr){
-		return new POILayer(mapper,file,x,y,attr);
-	}
-	*/
 	public ShpRepos createShpRepos(String file,boolean alfa){
-		return new ShpRepos(file,alfa);
+		return new ShpRepos(file);
+	}
+	
+	public DataRepos createMySQLRepos(String url,String name){
+		return new MySqlRepos(url,name);
 	}
 	
 	public GeomLayer createGeomLayer(DataRepos dataRepos){
@@ -70,23 +69,4 @@ public class Mapa {
 		return new Simbology();
 	}
 	
-	/*
-	public GeomStyles createStyles(int a, int b, int c){
-		GeomStyles s=new GeomStyles();
-		s.surfaceColor=new Color(a);
-		s.lineColor=new Color(b);
-		s.nodeColor=new Color(c);
-		return s;
 	}
-	
-	public GeometryAttrPainter createAttrGeomPainter(){
-		return new GeometryAttrPainter();
-	
-	}
-	public PaintAttr createPaintAttr(String fieldName,int offx,int offy,int color,int minZ,int maxZ){
-		return new PaintAttr(fieldName,offx,offy,color,minZ,maxZ);
-	}
-	
-	
-	*/
-}

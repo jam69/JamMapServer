@@ -13,5 +13,6 @@
 	<classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.5.11/slf4j-api-1.5.11.jar" sourcepath="M2_REPO/org/slf4j/slf4j-api/1.5.11/slf4j-api-1.5.11-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/net/sf/ehcache/ehcache-terracotta/2.3.1/ehcache-terracotta-2.3.1.jar"/>
 	<classpathentry kind="lib" path="slf4j-jdk14-1.5.11.jar"/>
+	<classpathentry kind="lib" path="mysql-connector-java-5.1.22-bin.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

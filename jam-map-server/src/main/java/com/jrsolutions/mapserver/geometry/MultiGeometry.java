@@ -18,6 +18,12 @@ public class MultiGeometry extends Geometry{
 	public Geometry[] getGeometryArray() {
 		return geoms;
 	}
+	public Geometry getGeom(int n){
+		if(n<0||n>=geoms.length){
+			return null;
+		}
+		return geoms[n];
+	}
 
 	public void addPoint(Point p){
 		Geometry[] old=geoms;
@@ -48,23 +54,16 @@ public class MultiGeometry extends Geometry{
 		env=null;
 	}
 	
-//	public Envelope getEnvelope(){
-//		Envelope env=new Envelope();
-//		for(int i=0;i<geoms.length;i++){
-//			env.extend(geoms[i].getEnvelope());
-//		}
-//		return env;
-//	}
-	public Rect getEnvelope(){
-		if(env==null){
-			env=new Rect();
-			for(int i=0;i<geoms.length;i++){
-				env.extend(geoms[i].getEnvelope());
-			}
+	@Override
+	public Rect calcEnvelope(){
+		env=new Rect();
+		for(int i=0;i<geoms.length;i++){
+			env.extend(geoms[i].getEnvelope());
 		}
 		return env;
 	}
 	
+	@Override
 	public String toString(){
 		StringBuffer sb=new StringBuffer();
 		sb.append("MultiGeom: ("+geoms.length+")\n");

@@ -30,6 +30,15 @@ public class Mapper {
 	
 	private Rect r;
 
+	private int zoomLevel;
+	
+	public void setZoomLevel(int z){
+		zoomLevel=z;
+	}
+	public int getZoomLevel(){
+		return zoomLevel;
+	}
+	
 	public Mapper() {
 		
 	}

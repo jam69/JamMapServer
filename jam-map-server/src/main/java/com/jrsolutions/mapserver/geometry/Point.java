@@ -38,13 +38,9 @@ public class Point extends Geometry {
 		env=null;
 	}
 		
-//	public Envelope getEnvelope() {
-//		return new Envelope(coord[0],coord[1],coord[0],coord[1]);
-//	}
-	public Rect getEnvelope() {
-		if(env==null){
-			env=new Rect(coord[0],coord[1],coord[0],coord[1]);
-		}
+	@Override
+	public Rect calcEnvelope() {
+		env=new Rect(coord[0],coord[1],coord[0],coord[1]);
 		return env;
 	}
 	

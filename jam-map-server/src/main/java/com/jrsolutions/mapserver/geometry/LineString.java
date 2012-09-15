@@ -34,6 +34,14 @@ public class LineString extends Geometry{
 	public Point[] getPoints(){
 		return puntos;
 	}
+	
+	public Point getPoint(int n){
+		if( n<0 || n >= puntos.length){
+			return null;
+		}
+		return puntos[n];
+	}
+	
 	public int getNumPoints(){
 		return puntos.length;
 	}
@@ -47,19 +55,11 @@ public class LineString extends Geometry{
 		return res;
 	}
 
-//	public Envelope getEnvelope() {
-//		Envelope env=new Envelope();
-//		for(int i=0;i<puntos.length;i++){
-//			env.extend(puntos[i]);
-//		}
-//		return env;
-//	}
-	public Rect getEnvelope() {
-		if(env==null){
-			env=new Rect();
-			for(int i=0;i<puntos.length;i++){
-				env.extend(puntos[i]);
-			}
+	@Override
+	public Rect calcEnvelope() {
+		env=new Rect();
+		for(int i=0;i<puntos.length;i++){
+			env.extend(puntos[i]);
 		}
 		return env;
 	}

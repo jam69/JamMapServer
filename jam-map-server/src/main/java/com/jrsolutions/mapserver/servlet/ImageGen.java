@@ -77,8 +77,9 @@ static {
 			Mapper mapper =new Mapper();	
 			mapper.setSize(256, 256); 			
 			mapper.zoom(r);
+			mapper.setZoomLevel(z);
 
-			mapa.pinta(mapper,gr,z);
+			mapa.pinta(mapper,gr);
 			
 		return image;
 	}
