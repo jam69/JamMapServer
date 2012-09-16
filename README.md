@@ -9,11 +9,18 @@ This is a brand new Map and Geometry Server.
 * Download and unzip de sources
 
 ### Maven
-Execute:
+####Execute:
+Servidor web:
 
-     cd jam-map-server
-     mvn package
-     mvn jetty:run
+      cd jam-map-server
+      mvn package install
+      cd jam-map
+      cd jam-map-server
+      mvn jetty:run
+Tools:
+
+      cd jam-map-tools
+      map-tools.bat
 
 ###Eclipse
 * Install (or check) the **M2e** (Maven Integration for eclipse) plugin.
