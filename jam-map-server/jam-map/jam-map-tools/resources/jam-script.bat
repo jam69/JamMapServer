@@ -1,3 +1,3 @@
 
 
-java -jar ../target/jam-map-tools.jar script.class  CopiaSHPaMySQL.js
+java -cp target/jam-map-tools.jar lib/mySQL-connector.jar Main  CopiaSHPaMySQL.js

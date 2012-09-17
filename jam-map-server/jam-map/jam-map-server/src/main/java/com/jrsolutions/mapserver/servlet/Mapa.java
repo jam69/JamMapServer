@@ -9,12 +9,10 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import com.jrsolutions.mapserver.MapUtil;
 import com.jrsolutions.mapserver.database.DataRepos;
-import com.jrsolutions.mapserver.database.MySqlRepos;
-import com.jrsolutions.mapserver.database.shp.ShpRepos;
 import com.jrsolutions.mapserver.render.GeomLayer;
 import com.jrsolutions.mapserver.render.Mapper;
-import com.jrsolutions.mapserver.render.Simbology;
 
 public class Mapa {
 
@@ -26,6 +24,7 @@ public class Mapa {
 		ScriptEngineManager mgr = new ScriptEngineManager();
 		ScriptEngine jsEngine = mgr.getEngineByName("JavaScript");
 		jsEngine.put("mapa", this);
+		jsEngine.put("xxxx", new MapUtil());
 		try {
 			Reader reader=new InputStreamReader(this.getClass().getResourceAsStream("/startup.js"));
 			jsEngine.eval(reader);
@@ -53,22 +52,10 @@ public class Mapa {
 
 	// Create poiRepos
 	
-	public ShpRepos createShpRepos(String file,boolean alfa){
-		return new ShpRepos(file);
-	}
-	
-	public DataRepos createMySQLRepos(String url,String name){
-		return new MySqlRepos(url,name);
-	}
-	
 	public GeomLayer createGeomLayer(DataRepos dataRepos){
 		GeomLayer gLayer=new GeomLayer(dataRepos);
 		layers.add(gLayer);
 		return gLayer;
-	}
-	
-	public Simbology createSymboly(){
-		return new Simbology();
 	}
 	
 	}

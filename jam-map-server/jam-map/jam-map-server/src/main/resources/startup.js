@@ -3,50 +3,44 @@
          var dbURL="jdbc:mysql://localhost:3306/mapas?user=root&password=root";
 
         function createSymb(a,b,c){
-        	var simb= mapa.createSymboly()
+        	var simb= xxxx.createSymboly()
                           .addLineColor(b)
                           .addNodeSymbol(1,a)
                           .addSurfaceColor(c);
         	return simb;
         } 
    	 
-        var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
-//         var simb= mapa.createSymboly()
-//            .addLineColor(0xcccccc)
-//            .addNodeSymbol(1,0xaa00aa)
-//            .addSurfaceColor(0xffaaaa);
-//         //   .addStartPointText(0 ,0,0xcccccc,"NAME")
-//         //   .addStartPointText(0,10,0xffcccc,"TYPE")
-//   
-         var dataRepos = mapa.createMySQLRepos(dbURL,"naturales");
+         var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
+
+         var dataRepos = xxxx.createMySQLRepos(dbURL,"naturales");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(7,19);
          geomLayer.setDefault(simb);
 
-         var dataRepos = mapa.createMySQLRepos(dbURL,"landuse");
+         var dataRepos = xxxx.createMySQLRepos(dbURL,"landuse");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(8,19);
          geomLayer.setDefault(createSymb(0xaa00aa,0xcccccc,0xccffff));
 
-         var dataRepos = mapa.createMySQLRepos(dbURL,"buildings");
+         var dataRepos = xxxx.createMySQLRepos(dbURL,"buildings");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(9,19);
          geomLayer.setDefault(createSymb(0xaa00aa,0xcccccc,0xccffcc));
 
-         var dataRepos = mapa.createMySQLRepos(dbURL,"roads");
+         var dataRepos = xxxx.createMySQLRepos(dbURL,"roads");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(11,19);
          var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa)
                 .addStartPointText(0 ,0,0xcccccc,"name",14);
          geomLayer.setDefault(simb);
 
-         var dataRepos = mapa.createMySQLRepos(dbURL,"railways");
+         var dataRepos = xxxx.createMySQLRepos(dbURL,"railways");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(11,19);
          var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
          geomLayer.setDefault(simb);
 
-         var dataRepos = mapa.createMySQLRepos(dbURL,"places");
+         var dataRepos = xxxx.createMySQLRepos(dbURL,"places");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(13,19);
          var simb2=createSymb(0xaa00aa,0xcccccc,0xccffcc)
@@ -54,10 +48,10 @@
                 .addNodeText(0 ,10,0xcccccc,"type",15);
          geomLayer.setDefault(simb2);
 
-         var dataRepos = mapa.createMySQLRepos(dbURL,"points");
+         var dataRepos = xxxx.createMySQLRepos(dbURL,"points");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(13,19);       
-         var simb= mapa.createSymboly()
+         var simb= xxxx.createSymboly()
                        .addLineColor(b)
                        .addNodeSymbol(2,a)
                        .addSurfaceColor(c)
