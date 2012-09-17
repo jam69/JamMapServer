@@ -17,10 +17,15 @@ Servidor web:
       cd jam-map
       cd jam-map-server
       mvn jetty:run
+      -- launch the jetty server with the application
+      -- to test it: browse : http://localhost:8080/jam-map-server/GoogleMapOSM.html
 Tools:
 
+      cd jam-map
       cd jam-map-tools
-      map-tools.bat
+      mvn package
+      mvn exec:java
+      -- launch the application with the resources/CopiaSHPaMySQL.js  file
 
 ###Eclipse
 * Install (or check) the **M2e** (Maven Integration for eclipse) plugin.
