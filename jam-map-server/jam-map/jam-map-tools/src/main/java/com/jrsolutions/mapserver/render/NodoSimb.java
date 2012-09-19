@@ -27,6 +27,13 @@ public class NodoSimb extends NodeSimbology {
 		this.id=id;
 		this.color=new Color(color);
 	}
+	
+	@Override
+	public void paint(Mapper m, Graphics2D g,Point p,double angle, Entity ent) {
+		// TODO
+		paint(m,g,p,ent);
+	}
+	
 	@Override
 	public void paint(Mapper m, Graphics2D g,Point p, Entity ent) {
 		

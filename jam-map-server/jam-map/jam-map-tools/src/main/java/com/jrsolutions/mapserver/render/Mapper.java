@@ -151,6 +151,18 @@ public class Mapper {
 	}
 	
 	/**
+	 * Some transformations require both coordinates
+	 * 
+	 * (for now, we ignore Y )
+	 * 
+	 * @param X
+	 * @param Y
+	 * @return
+	 */
+	public int posX(double X,double Y){
+		return posX(X);
+	}
+	/**
          * Devuelve la coordenada de ventana correspondiente a la coordenada real
          * que se le pasa.
          *
@@ -164,7 +176,17 @@ public class Mapper {
 	public int posY(double cy) {
 		return (int)(Math.round((r.getYMax()-cy)*alto/(r.getYMax()-r.getYMin())));
 	}
-	
+	/**
+	 * Some transformations require both coordinates
+	 * (for now, we ignore X)
+	 * 
+	 * @param X
+	 * @param Y
+	 * @return
+	 */
+	public int posY(double X, double Y){
+		return posY(Y);
+	}
 	/**
      *  Metodo que adapta las coordenadas para que se mantenga la misma
      *  escala en horizontal y en vertical Y que este dentro del limite

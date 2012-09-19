@@ -37,6 +37,10 @@ public class Simbology {
 		linePrims.add(new LineStartPoint(new NodeText(offx, offy, color, attrName,zmin)));
 		return this;
 	}
+	public Simbology addMidPointText(int offx,int offy, int color, String attrName,int zmin){
+		linePrims.add(new LineMiddlePoint(new NodeText(offx, offy, color, attrName,zmin)));
+		return this;
+	}
 	public Simbology addSurfaceColor(int color){
 		surfacePrims.add(new SurfFillColor(new Color(color)));
 		return this;

@@ -55,4 +55,7 @@ public class Point extends Geometry {
 		return coord.length;
 	}
 	
+	public double distance(Point p){
+		return  Math.sqrt( (getX()-p.getX())*(getX()-p.getX())+(getY()-p.getY())*(getY()-p.getY()));
+	}
 }
