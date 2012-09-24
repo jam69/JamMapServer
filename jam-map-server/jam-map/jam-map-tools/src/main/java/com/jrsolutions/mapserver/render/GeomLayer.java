@@ -54,7 +54,7 @@ public class GeomLayer {
     }
 	
 	public void render(Mapper m,Graphics2D g){
-		Iterator<Entity> it=repos.getIterator(m.getZoom());
+		Iterator<Entity> it=repos.getIterator(m.getZoom().increase(.001,.001));
 		while(it.hasNext()){
 			Entity ent=it.next();
 			for(PaintFilter f:filtros){

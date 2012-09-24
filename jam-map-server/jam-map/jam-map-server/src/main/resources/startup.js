@@ -11,55 +11,54 @@
         } 
    	 
          var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
-
+/*
          var dataRepos = xxxx.createMySQLRepos(dbURL,"naturales");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(7,19);
          geomLayer.setDefault(simb);
-
+*/
+/*
          var dataRepos = xxxx.createMySQLRepos(dbURL,"landuse");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(8,19);
          geomLayer.setDefault(createSymb(0xaa00aa,0xcccccc,0xccffff));
-
-         var dataRepos = xxxx.createMySQLRepos(dbURL,"buildings");
+*/
+/*         var dataRepos = xxxx.createMySQLRepos(dbURL,"buildings");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(9,19);
          geomLayer.setDefault(createSymb(0xaa00aa,0xcccccc,0xccffcc));
-
+*/
          var dataRepos = xxxx.createMySQLRepos(dbURL,"roads");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(11,19);
-         var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa)
-                .addStartPointText(0 ,0,0xcccccc,"name",14);
+         var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
+          //      .addMidPointText(0 ,0,0xccffcc,"name",17,12,"","E");
          geomLayer.setDefault(simb);
 
-         var dataRepos = xxxx.createMySQLRepos(dbURL,"railways");
+  /*       var dataRepos = xxxx.createMySQLRepos(dbURL,"railways");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(11,19);
          var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
          geomLayer.setDefault(simb);
-
-         var dataRepos = xxxx.createMySQLRepos(dbURL,"places");
-         var geomLayer = mapa.createGeomLayer(dataRepos);
-         geomLayer.setZoomLimits(13,19);
-         var simb2=createSymb(0xaa00aa,0xcccccc,0xccffcc)
-                .addNodeText(0 ,0,0xffffff,"name",15)
-                .addNodeText(0 ,10,0xcccccc,"type",15);
-         geomLayer.setDefault(simb2);
-
+*/
+         
          var dataRepos = xxxx.createMySQLRepos(dbURL,"points");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(13,19);       
-         var simb= xxxx.createSymboly()
-                       .addLineColor(b)
-                       .addNodeSymbol(2,a)
-                       .addSurfaceColor(c)
-                   	   .addNodeText(0 , 0,0xffffff,"name",15)
-         	           .addNodeText(0 ,10,0xffffff,"type",14);  
+         var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa)
+         		   .addNodeText(0 , 0,0xffccff,"name",15,10,"","N")
+         		   .addNodeText(0 , 0,0xffcccc,"type",15,10,"","S");
          geomLayer.setDefault(simb);
 
-
+/*         var dataRepos = xxxx.createMySQLRepos(dbURL,"places");
+         var geomLayer = mapa.createGeomLayer(dataRepos);
+         geomLayer.setZoomLimits(13,19);
+         var simb2=createSymb(0xaa00aa,0xcccccc,0xccffcc)
+         			   .addNodeSymbol(2,0xccffcc)
+                       .addNodeText(0 ,0,0xffffff,"name",17,10,"","N")
+            //    .addNodeText(0 ,10,0xcccccc,"type",17,10,"","S");
+         geomLayer.setDefault(simb2);
+*/
          
 /*		 
 		 painter.where("TYPE","residential",green);

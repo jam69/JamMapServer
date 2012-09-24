@@ -83,13 +83,15 @@ public class Rect {
 		return new Rect(xmin,ymin,xmax,ymax);
 	}
 		
-	public void amplia(double dx,double dy){
+	public Rect increase(double dx,double dy){
 		xmin-=dx;
 		ymin-=dy;
 		xmax+=dx;
 		ymax+=dy;
+		return this;
 	}
-	public void amplia(Rect r){
+	
+	public void increase(Rect r){
 		if(xmin>r.xmin)xmin=r.xmin;
 		if(ymin>r.ymin)ymin=r.ymin;
 		if(xmax<r.xmax)xmax=r.xmax;

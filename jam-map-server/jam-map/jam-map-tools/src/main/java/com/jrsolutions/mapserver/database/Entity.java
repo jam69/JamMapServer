@@ -40,4 +40,14 @@ public class Entity {
 	public Object getAttrValue(int i){
 		return attrs.get(attrNames.get(i));
 	}
+	
+	public String toString(){
+		StringBuffer sb=new StringBuffer();
+		sb.append("Entity(");
+		for(String a:attrNames){
+			sb.append("["+a+"="+attrs.get(a)+"]");
+		}
+		sb.append(")");
+		return sb.toString();
+	}
 }

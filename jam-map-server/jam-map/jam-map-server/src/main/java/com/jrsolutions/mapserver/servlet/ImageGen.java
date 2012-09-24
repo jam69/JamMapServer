@@ -38,7 +38,7 @@ static {
 }
 	
 	
-	static Mapa mapa=new Mapa("algo");
+	private static Mapa mapa=new Mapa("algo");
 
    public BufferedImage getImage(String key) {
 

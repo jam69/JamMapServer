@@ -29,16 +29,16 @@ public class Simbology {
 		nodePrims.add(new NodoSimb(simb,color));
 		return this;
 	}
-	public Simbology addNodeText(int offx,int offy, int color, String attrName,int zmin){
-		nodePrims.add(new NodeText(offx, offy, color, attrName,zmin));
+	public Simbology addNodeText(int offx,int offy, int color, String attrName,int zmin,int size,String bType,String align){
+		nodePrims.add(new NodeText(offx, offy, color, attrName,zmin,size,bType,align));
 		return this;
 	}
-	public Simbology addStartPointText(int offx,int offy, int color, String attrName,int zmin){
-		linePrims.add(new LineStartPoint(new NodeText(offx, offy, color, attrName,zmin)));
+	public Simbology addStartPointText(int offx,int offy, int color, String attrName,int zmin,int size,String bType,String align){
+		linePrims.add(new LineStartPoint(new NodeText(offx, offy, color, attrName,zmin,size,bType,align)));
 		return this;
 	}
-	public Simbology addMidPointText(int offx,int offy, int color, String attrName,int zmin){
-		linePrims.add(new LineMiddlePoint(new NodeText(offx, offy, color, attrName,zmin)));
+	public Simbology addMidPointText(int offx,int offy, int color, String attrName,int zmin,int size,String bType,String align){
+		linePrims.add(new LineMiddlePoint(new NodeText(offx, offy, color, attrName,zmin,size,bType,align)));
 		return this;
 	}
 	public Simbology addSurfaceColor(int color){

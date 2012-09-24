@@ -3,6 +3,7 @@ package com.jrsolutions.mapserver.database;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -12,12 +13,13 @@ import java.util.Iterator;
 import java.util.logging.Logger;
 
 import com.jrsolutions.mapserver.database.datadefinition.FieldDescriptor;
+import com.jrsolutions.mapserver.database.datadefinition.FieldDescriptor.Type;
 import com.jrsolutions.mapserver.database.datadefinition.TableDescriptor;
 import com.jrsolutions.mapserver.geometry.Geometry;
-import com.jrsolutions.mapserver.geometry.WKTParser;
-import com.jrsolutions.mapserver.geometry.WKTParser.WKTParseException;
 import com.jrsolutions.mapserver.geometry.Rect;
 import com.jrsolutions.mapserver.geometry.WKBReader;
+import com.jrsolutions.mapserver.geometry.WKTParser;
+import com.jrsolutions.mapserver.geometry.WKTParser.WKTParseException;
 import com.jrsolutions.mapserver.geometry.WKTWriter;
 
 
@@ -64,14 +66,16 @@ public class MySqlRepos implements DataRepos{
 	
 	@Override
 	public Iterator<Entity> getIterator() {
-		System.out.println("Iterator");
-		return new SQLIterator("select AsText(geom),NAME from "+description.getName() );
+//		System.out.println("Iterator");
+		return new SQLIterator("select AsText(geom)"+buildSelectCommand()+" from "+description.getName() );
 	}
 
 	@Override
 	public Iterator<Entity> getIterator(Rect r) {
-		log.info("Iterator "+r);
-		String cmd="select asText(geom),NAME from "
+		log.finest("Iterator "+r);
+		String cmd="select asText(geom)"
+				+ buildSelectCommand()
+				+" from "
 				+ description.getName()
 	            + " where "
 				+ "MBRintersects("
@@ -99,7 +103,7 @@ public class MySqlRepos implements DataRepos{
 		private ResultSetMetaData meta;
 		
 		public SQLIterator(String query){
-			log.info("QUERY:"+query+Thread.currentThread().getId());
+			log.info("QUERY:"+query+" threadId="+Thread.currentThread().getId());
 			try {
 				connection = DriverManager.getConnection(description.getDatabaseURL());
 				st=connection.createStatement(
@@ -139,7 +143,7 @@ public class MySqlRepos implements DataRepos{
 //				System.out.println("NNEXT::::");
 				Entity ent=new Entity();
 				//for(int i=0;i<meta.getColumnCount();i++){
-				for(int i=0;i<2;i++){
+				for(int i=0;i<meta.getColumnCount();i++){
 					if( i==0){
 						
 						try {
@@ -239,6 +243,58 @@ public class MySqlRepos implements DataRepos{
 		}
 //		System.out.println("Insert:"+sb.toString());
 		return sb.toString();
+	}
+	
+	private String buildSelectCommand(){
+		if(description.getFields().isEmpty()){
+			readDescription();
+		}
+		StringBuffer sb=new StringBuffer();
+		for(FieldDescriptor fd:description.getFields()){
+			sb.append(",");
+			sb.append(fd.getName());
+		}
+		return sb.toString();
+	}
+	
+	synchronized private void readDescription(){
+		try {
+			description.getFields().clear();
+			Connection connection = DriverManager.getConnection(description.getDatabaseURL());
+			DatabaseMetaData meta=connection.getMetaData();
+			ResultSet rs=meta.getColumns(null, null, description.getName(), null);
+			while(rs.next()){
+				String name=rs.getString(4);
+				int type=rs.getInt(5);
+				FieldDescriptor.Type t=null;
+				if(type==java.sql.Types.BOOLEAN){
+					t=FieldDescriptor.Type.Logical;
+				}else if(type==java.sql.Types.INTEGER){
+					t=FieldDescriptor.Type.Decimal;
+				}else if(type==java.sql.Types.DECIMAL){
+					t=FieldDescriptor.Type.Decimal;
+				}else if(type==java.sql.Types.VARCHAR){
+					t=FieldDescriptor.Type.Varchar;
+				}else if(type==java.sql.Types.DOUBLE){
+					t=FieldDescriptor.Type.Real;
+				}else if(type==java.sql.Types.BINARY){
+					t=FieldDescriptor.Type.Geometry;
+				}else if(type==java.sql.Types.TIMESTAMP){
+					t=FieldDescriptor.Type.Date;
+				}else{
+					System.out.println("NAME:"+name+" TYPE:"+type);
+				}
+				int lon =rs.getInt(7);
+				int prec=rs.getInt(9);
+				if(t!=null && t!=Type.Geometry){
+					description.addField(new FieldDescriptor(name, t, lon, prec));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 		/*
 		String cmd="CREATE TABLE name ( campo1 VARCHAR(30), campo2 DATE, campo3 ";
