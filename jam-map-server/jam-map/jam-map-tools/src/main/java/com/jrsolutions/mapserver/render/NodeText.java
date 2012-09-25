@@ -109,7 +109,7 @@ public class NodeText extends NodeSimbology {
 		public void paint(Mapper m, Graphics2D g, Point p, double angulo, double mx, double my,Entity ent) {
 			if(m.getZoomLevel()<zmin)return;
 			Object obj=ent.getAttr(attrName);
-			System.out.println(">>"+obj+"=="+ent);
+//			System.out.println(">>"+obj+"=="+ent);
 			if(obj==null)return;
 			String str=obj.toString(); // Formatter
 			if(str.length()==0)return;

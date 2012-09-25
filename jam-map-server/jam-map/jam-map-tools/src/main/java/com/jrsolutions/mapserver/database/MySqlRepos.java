@@ -72,7 +72,7 @@ public class MySqlRepos implements DataRepos{
 
 	@Override
 	public Iterator<Entity> getIterator(Rect r) {
-		log.finest("Iterator "+r);
+		log.fine("Iterator "+r);
 		String cmd="select asText(geom)"
 				+ buildSelectCommand()
 				+" from "
@@ -103,7 +103,7 @@ public class MySqlRepos implements DataRepos{
 		private ResultSetMetaData meta;
 		
 		public SQLIterator(String query){
-			log.info("QUERY:"+query+" threadId="+Thread.currentThread().getId());
+			log.fine("QUERY:"+query+" threadId="+Thread.currentThread().getId());
 			try {
 				connection = DriverManager.getConnection(description.getDatabaseURL());
 				st=connection.createStatement(

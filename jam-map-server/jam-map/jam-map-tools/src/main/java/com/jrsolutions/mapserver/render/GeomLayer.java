@@ -49,6 +49,11 @@ public class GeomLayer {
 	public void where(String attr_name, String attr_value,Simbology simb){
 		addFilter(new PaintFilter( new CondAttr(attr_name,attr_value),simb));
     }
+	public void where(String attr_name, String attr_value,String iconPath,int zmin,String align){
+		Simbology simb=new Simbology();
+		simb.addNodePrim(new NodeIcon(iconPath, zmin, align));
+		addFilter(new PaintFilter( new CondAttr(attr_name,attr_value),simb));
+    }
 	public void setDefault(Simbology simb){
 		addFilter(new PaintFilter( new CondTrue(),simb));
     }

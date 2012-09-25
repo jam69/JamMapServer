@@ -20,7 +20,7 @@ public class Simbology {
 	private final List<SurfaceSimbology> surfacePrims = new ArrayList<SurfaceSimbology>();
 	
 	
-	/*API*/
+	/*------------------  API  --------------------------------*/
 	public Simbology addLineColor(int color){
 		linePrims.add(new LineColor(new Color(color)));
 		return this;
@@ -33,6 +33,10 @@ public class Simbology {
 		nodePrims.add(new NodeText(offx, offy, color, attrName,zmin,size,bType,align));
 		return this;
 	}
+	public Simbology addNodeIcon(String iconPath,int zmin,String align){
+		nodePrims.add(new NodeIcon(iconPath,zmin,align));
+		return this;
+	}
 	public Simbology addStartPointText(int offx,int offy, int color, String attrName,int zmin,int size,String bType,String align){
 		linePrims.add(new LineStartPoint(new NodeText(offx, offy, color, attrName,zmin,size,bType,align)));
 		return this;
@@ -43,6 +47,12 @@ public class Simbology {
 	}
 	public Simbology addSurfaceColor(int color){
 		surfacePrims.add(new SurfFillColor(new Color(color)));
+		return this;
+	}
+	
+	//----------------------  metodos  internos ---------------------------
+	public Simbology addNodePrim(NodeSimbology nSimb){
+		nodePrims.add(nSimb);
 		return this;
 	}
 	
