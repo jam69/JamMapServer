@@ -50,6 +50,11 @@ public class Simbology {
 		return this;
 	}
 	
+	public Simbology addSurfNodeText(int offx,int offy, int color, String attrName,int zmin,int size,String bType,String align){
+		surfacePrims.add( new SurfCentroidPoint(new NodeText(offx, offy, color, attrName,zmin,size,bType,align)));
+		return this;
+	}
+	
 	//----------------------  metodos  internos ---------------------------
 	public Simbology addNodePrim(NodeSimbology nSimb){
 		nodePrims.add(nSimb);

@@ -109,13 +109,14 @@ public class NodeText extends NodeSimbology {
 		public void paint(Mapper m, Graphics2D g, Point p, double angulo, double mx, double my,Entity ent) {
 			if(m.getZoomLevel()<zmin)return;
 			Object obj=ent.getAttr(attrName);
-//			System.out.println(">>"+obj+"=="+ent);
+//		System.out.println(">>>><>"+obj+"=="+ent);
 			if(obj==null)return;
 			String str=obj.toString(); // Formatter
 			if(str.length()==0)return;
 			int tx=m.posX(p.getX());
 			int ty=m.posY(p.getY());
- 
+//		System.out.println("------------>>>>"+tx+" - "+ty);
+			
 			float tam=size; // por ahora los textos no se escalan
 
 			Font origen = font!=null ? font: g.getFont();

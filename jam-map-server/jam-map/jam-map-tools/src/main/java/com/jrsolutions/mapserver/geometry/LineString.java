@@ -202,6 +202,79 @@ public class LineString extends Geometry{
 		return superficie;
 	}
 
+	/**
+	 * Returns a Centroid of line.
+	 * 
+	 * In this implementation calculate the mean for X and Y
+	 * 
+	 * @return
+	 */
+ 	 public Point getCentroid() {
+		double cx=0,cy=0;
+		for(int i=0;i<getNumPoints();i++)
+		{
+			cx+=getPoint(i).getX();
+			cy+=getPoint(i).getY();
+		}
+		return new Point(cx/getNumPoints(),cy/getNumPoints());
+	}
+
+ 	 
+ 	// other implementation that not work very well, but is in some books and links
+ 	 //http://www.geog.ubc.ca/courses/klink/gis.notes/ncgia/u33.html#SEC33.4.1
+ 	 //http://www.mapforums.com/find-center-polygon-4042.html
+ 	 //http://introcs.cs.princeton.edu/java/35purple/Polygon.java.html
+ 	 //http://forums.esri.com/Thread.asp?c=2&f=1718&t=234141
+	public Point getCentroid3()
+	{
+	double cx=0,cy=0;
+	double A=getArea2();
+	int i,j=0;
+
+	double factor=0;
+	for (i=0;i<puntos.length; j = (i + 1) % puntos.length){
+			factor=(puntos[i].getX()*puntos[j].getY()-puntos[j].getX()*puntos[i].getY());
+			cx+=(puntos[i].getX()+puntos[j].getX())*factor;
+			cy+=(puntos[i].getY()+puntos[j].getY())*factor;
+			i++;
+	}
+	A*=6.0f;
+	factor=1/A;
+	cx*=factor;
+	cy*=factor;
+	return new Point(cx,cy);
+	} 
+	
+	
+	
+    public Point getCentroid2() {
+	        double cx = 0.0, cy = 0.0;
+//	        for (int i = 0; i < (puntos.length-1); i++) {
+//	            cx = cx + (puntos[i].getX() + puntos[i+1].getX()) * (puntos[i].getY() * puntos[i+1].getX() - puntos[i].getX() * puntos[i+1].getY());
+//	            cy = cy + (puntos[i].getY() + puntos[i+1].getY()) * (puntos[i].getY() * puntos[i+1].getY() - puntos[i].getX() * puntos[i+1].getY());
+//	        }
+			double p1x=getPoint(0).getX();
+			double p1y=getPoint(0).getY();
+			double p2x,p2y;
+			for(int i=1;i<getNumPoints();i++)
+			{
+				p2x=getPoint(i).getX();
+				p2y=getPoint(i).getY();
+				cx += (p1x + p2x) *p1y* p2x -p1x*p2y;
+				cy += (p1y + p2y) *p1y* p2x -p1x*p2y;
+				p1x=p2x;
+				p1y=p2y;
+			}
+			p2x=getPoint(0).getX();
+			p2y=getPoint(0).getY();
+			cx += (p1x + p2x) *p1y* p2x -p1x*p2y;
+			cy += (p1y + p2y) *p1y* p2x -p1x*p2y;
+		
+		    cx /= (6 * getArea());
+	        cy /= (6 * getArea());
+	        return new Point(cx, cy);
+	    }
+
 	@Override
 	public String toString(){
 		StringBuffer sb=new StringBuffer("LineString:["+puntos.length+"]->");
