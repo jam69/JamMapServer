@@ -1,4 +1,6 @@
 
+importPackage(com.jrsolutions.mapserver.render);
+
 
          var dbURL="jdbc:mysql://localhost:3306/mapas?user=root&password=root";
          var iconPath="/data/map-icons/icons/";
@@ -11,7 +13,30 @@
         	return simb;
         } 
    	 
-         var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
+        var s=(new Simbology()).addLineColor(0xaaaaaa); 
+        
+        var greenLine  = (new Simbology()).addLineColor(0x00FF00);
+        var redLine    = (new Simbology()).addLineColor(0xFF0000);
+        var blueLine   = (new Simbology()).addLineColor(0x0000FF);
+        var cyanLine   = (new Simbology()).addLineColor(0x00FFFF);
+        var grayLine   = (new Simbology()).addLineColor(0xcccccc);
+        var yellowLine = (new Simbology()).addLineColor(0xFFFF00);
+        var greenLine  = (new Simbology()).addLineColor(0x00FF00);
+        var magentaLine= (new Simbology()).addLineColor(0xFF00FF);
+        var brownLine  = (new Simbology()).addLineColor(0xCD7F32);
+        var aquamarina = (new Simbology()).addLineColor(0x70DB93);
+        var whiteLine  = (new Simbology()).addLineColor(0xffffff);
+        var pinkLine   = (new Simbology()).addLineColor(0xFF69B4);
+        
+        var TxtTypeName = (new  Simboly())
+        		.addNodeText    (0 ,0,0x00ff00,"name",15,13,"","N")
+                .addNodeText    (0 ,0,0xcc0000,"type",15,13,"","S")
+        		.addMidPointText(0, 0,0xff00ff,"name",15,13,"","N")
+        		.addMidPointText(0, 0,0xffff00,"type",15,13,"","S")
+        		.addSurfNodeText(0, 0,0xffffff,"name",15,13,"","N")
+        		.addSurfNodeText(0, 0,0xcccccc,"type",15,13,"","S");
+        		
+        var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
 
          var dataRepos = xxxx.createMySQLRepos(dbURL,"naturales");
          var geomLayer = mapa.createGeomLayer(dataRepos);
@@ -30,19 +55,31 @@
          geomLayer.setDefault(createSymb(0xaa00aa,0xcccccc,0xffcc99)
         		 .addSurfNodeText(0 , 0,0xffffff,"name",15,13,"","N")
         		 .addSurfNodeText(0 , 0,0xffffff,"type",15,13,"","S")
+        		 .addSurfContour( new LineColor(0x880088))
        		   );
 
          var dataRepos = xxxx.createMySQLRepos(dbURL,"roads");
-         var geomLayer = mapa.createGeomLayer(dataRepos);
-         geomLayer.setZoomLimits(11,19);
-         var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
-          //      .addMidPointText(0 ,0,0xccffcc,"name",17,12,"","E");
-         geomLayer.setDefault(simb);
+         var geomLayer = mapa.createGeomLayer(dataRepos)
+         		.setZoomLimits(11,19)
+         		.where("type","trunk",redLine)
+         		.where("type","motorway",redLine)
+         		.where("type","tertiary",blueLine)
+         		.where("type","residential",cyanLine)
+         		.where("type","cycleway",greenLine) 
+         		.where("type","footway",brownLine) 
+         		.where("type","path",brownLine) 
+         		.where("type","pedestrian",brownLine) 
+         		.where("type","track",brownLine) 
+         		.where("type","primary",grayLine) 
+         		.where("type","service",whiteLine) 
+         		.where("type","unclassified",pinkLine) 
+         		.setDefault(TxtTypeName);
 
          var dataRepos = xxxx.createMySQLRepos(dbURL,"railways");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(11,19);
          var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
+         
          geomLayer.setDefault(simb);
 
          

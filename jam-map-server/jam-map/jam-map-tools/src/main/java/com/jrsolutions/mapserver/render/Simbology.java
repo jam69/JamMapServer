@@ -49,6 +49,10 @@ public class Simbology {
 		surfacePrims.add(new SurfFillColor(new Color(color)));
 		return this;
 	}
+	public Simbology addSurfContour(LineSimbology simb){
+		surfacePrims.add(new SurfContour(simb));
+		return this;
+	}
 	
 	public Simbology addSurfNodeText(int offx,int offy, int color, String attrName,int zmin,int size,String bType,String align){
 		surfacePrims.add( new SurfCentroidPoint(new NodeText(offx, offy, color, attrName,zmin,size,bType,align)));
@@ -58,6 +62,10 @@ public class Simbology {
 	//----------------------  metodos  internos ---------------------------
 	public Simbology addNodePrim(NodeSimbology nSimb){
 		nodePrims.add(nSimb);
+		return this;
+	}
+	public Simbology addLinePrim(LineSimbology nSimb){
+		linePrims.add(nSimb);
 		return this;
 	}
 	

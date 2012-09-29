@@ -12,6 +12,9 @@ public class LineColor extends LineSimbology{
 
 	private final Color c;
 	
+	public LineColor(int c){
+		this.c=new Color(c);
+	}
 	public LineColor(Color c){
 		this.c=c;
 	}

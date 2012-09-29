@@ -22,13 +22,15 @@ public class GeomLayer {
 		this.repos=repos;
 	}
 	
-	public void addFilter(PaintFilter pf){
+	public GeomLayer addFilter(PaintFilter pf){
 		filtros.add(pf);
+		return this;
 	}
 	
-	public void setZoomLimits(int z1,int z2){
+	public GeomLayer setZoomLimits(int z1,int z2){
 		setMinZoom(z1);
 		setMaxZoom(z2);
+		return this;
 	}
 	public int getMaxZoom() {
 		return maxZoom;
@@ -46,18 +48,22 @@ public class GeomLayer {
 		this.minZoom = minZoom;
 	}
 
-	public void where(String attr_name, String attr_value,Simbology simb){
+	public GeomLayer where(String attr_name, String attr_value,Simbology simb){
 		addFilter(new PaintFilter( new CondAttr(attr_name,attr_value),simb));
-    }
-	public void where(String attr_name, String attr_value,String iconPath,int zmin,String align){
+		return this;
+	}
+	public GeomLayer where(String attr_name, String attr_value,String iconPath,int zmin,String align){
 		Simbology simb=new Simbology();
 		simb.addNodePrim(new NodeIcon(iconPath, zmin, align));
 		addFilter(new PaintFilter( new CondAttr(attr_name,attr_value),simb));
-    }
-	public void setDefault(Simbology simb){
+		return this;
+	}
+	public GeomLayer setDefault(Simbology simb){
 		addFilter(new PaintFilter( new CondTrue(),simb));
-    }
+		return this;
+	}
 	
+	/**  -- metodos de implementacion -- **/
 	public void render(Mapper m,Graphics2D g){
 		Iterator<Entity> it=repos.getIterator(m.getZoom().increase(.001,.001));
 		while(it.hasNext()){

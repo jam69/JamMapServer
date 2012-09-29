@@ -25,7 +25,9 @@ public class NodeIcon extends NodeSimbology {
 			this.image=ImageIO.read(new File(iconPath));
 		} catch (IOException e) {
 			//e.printStackTrace();
-			log.info("Icon Not Found:"+iconPath);
+			if(iconPath!=null && iconPath.length()>0){
+				log.info("Icon Not Found:"+iconPath);
+			}
 			image=null;
 		}
 		this.zmin=zmin;
@@ -102,7 +104,7 @@ public class NodeIcon extends NodeSimbology {
 			tx=px;
 	        ty=px;
 	        break;
-	}
+		}
 		g.drawImage(image,tx,ty,null);
 	}
 
