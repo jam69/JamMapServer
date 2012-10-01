@@ -24,7 +24,7 @@ public class MapUtil {
 		return new MySqlRepos(url,name);
 	}
 	
-	public Simbology createSymboly(){
+	public Simbology createSymbology(){
 		return new Simbology();
 	}
 

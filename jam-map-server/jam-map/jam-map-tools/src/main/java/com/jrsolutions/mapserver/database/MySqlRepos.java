@@ -10,6 +10,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Logger;
 
 import com.jrsolutions.mapserver.database.datadefinition.FieldDescriptor;
@@ -26,7 +27,9 @@ import com.jrsolutions.mapserver.geometry.WKTWriter;
 public class MySqlRepos implements DataRepos{
 
 	private static final Logger log=Logger.getLogger("MySQL");
-	
+
+	private static final Semaphore sem=new Semaphore(1);
+
 	private Connection connection;
 	private TableDescriptor description=new TableDescriptor();
 	private String geoName="geom";
@@ -245,15 +248,26 @@ public class MySqlRepos implements DataRepos{
 		return sb.toString();
 	}
 	
+	
 	private String buildSelectCommand(){
+		
+		try {
+			sem.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(description.getFields().isEmpty()){
 			readDescription();
 		}
+		
 		StringBuffer sb=new StringBuffer();
 		for(FieldDescriptor fd:description.getFields()){
 			sb.append(",");
 			sb.append(fd.getName());
 		}
+		sem.release();
+		
 		return sb.toString();
 	}
 	
@@ -462,8 +476,10 @@ public class MySqlRepos implements DataRepos{
 
 	@Override
 	public TableDescriptor getDescription(){
-		// TODO
-		return null;
+		if(description==null){
+			readDescription();
+		}
+		return description;
 	}
 	
 	

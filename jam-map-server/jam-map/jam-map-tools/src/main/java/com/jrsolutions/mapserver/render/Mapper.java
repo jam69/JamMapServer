@@ -9,7 +9,12 @@
 package com.jrsolutions.mapserver.render;
 
 import java.awt.Graphics;
+import java.awt.Shape;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Point2D;
 
+import com.jrsolutions.mapserver.geometry.LineString;
+import com.jrsolutions.mapserver.geometry.Point;
 import com.jrsolutions.mapserver.geometry.Rect;
 
 
@@ -187,6 +192,21 @@ public class Mapper {
 	public int posY(double X, double Y){
 		return posY(Y);
 	}
+	
+	public Shape mapLine(LineString line){
+		GeneralPath res=new GeneralPath(GeneralPath.WIND_EVEN_ODD,line.getNumPoints());
+		Point p=line.getPoint(0);
+		// res.moveTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+		res.moveTo( posX(p.getX()),posY(p.getY()));
+		for(int i=1;i<line.getNumPoints();i++){
+			p=line.getPoint(i);
+			// res.lineTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+			res.lineTo( posX(p.getX()),posY(p.getY()));
+		}
+		return res;
+	}
+	
+
 	/**
      *  Metodo que adapta las coordenadas para que se mantenga la misma
      *  escala en horizontal y en vertical Y que este dentro del limite

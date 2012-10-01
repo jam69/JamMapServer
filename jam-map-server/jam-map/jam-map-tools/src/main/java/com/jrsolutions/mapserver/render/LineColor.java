@@ -1,7 +1,11 @@
 package com.jrsolutions.mapserver.render;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.Stroke;
+import java.awt.geom.GeneralPath;
 import java.util.Iterator;
 
 import com.jrsolutions.mapserver.database.Entity;
@@ -11,17 +15,39 @@ import com.jrsolutions.mapserver.geometry.Point;
 public class LineColor extends LineSimbology{
 
 	private final Color c;
+	private final float thick;
+	private final Stroke stroke;
 	
 	public LineColor(int c){
-		this.c=new Color(c);
+		this(c,0);
 	}
+	
 	public LineColor(Color c){
+		this(c,0);
+	}
+
+	public LineColor(int c,float thick){
+		this.c=new Color(c);
+		this.thick=thick;
+		stroke=new BasicStroke(thick);
+	}
+	
+	public LineColor(Color c,float thick){
 		this.c=c;
+		this.thick=thick;
+		stroke=new BasicStroke(thick);
 	}
 	
 	@Override
 	public void paint(Mapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
+		g.setColor(c);
+		g.setStroke(stroke);
+		g.draw(mapper.mapLine(line));
+	}
+
+	public void paint2(Mapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
 			g.setColor(c);
+			g.setStroke(stroke);
 			Iterator<Point> it=line.iterator();		
 		    Point p=null;
 		    Point first=null;

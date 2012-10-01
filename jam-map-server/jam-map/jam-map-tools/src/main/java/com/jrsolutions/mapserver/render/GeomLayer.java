@@ -1,6 +1,8 @@
 package com.jrsolutions.mapserver.render;
 
 import java.awt.Graphics2D;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,6 +11,8 @@ import com.jrsolutions.mapserver.condition.CondAttr;
 import com.jrsolutions.mapserver.condition.CondTrue;
 import com.jrsolutions.mapserver.database.DataRepos;
 import com.jrsolutions.mapserver.database.Entity;
+import com.jrsolutions.mapserver.geometry.Rect;
+import com.jrsolutions.mapserver.geometry.WKBWriter;
 
 public class GeomLayer {
 
@@ -20,6 +24,16 @@ public class GeomLayer {
 
 	public GeomLayer(DataRepos repos){
 		this.repos=repos;
+	}
+	
+	public void dumpWKB(Rect r,OutputStream out) throws IOException{
+		Iterator<Entity> it=repos.getIterator(r);
+		while(it.hasNext()){
+			Entity ent=it.next();
+			WKBWriter writer=new WKBWriter();
+			byte[] buff=writer.write(ent.getGeom());
+			out.write(buff);
+		}
 	}
 	
 	public GeomLayer addFilter(PaintFilter pf){

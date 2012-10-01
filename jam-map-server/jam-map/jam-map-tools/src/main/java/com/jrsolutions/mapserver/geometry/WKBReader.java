@@ -32,6 +32,8 @@
  */
 package com.jrsolutions.mapserver.geometry;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.IOException;
 
 /**
@@ -87,240 +89,209 @@ public class WKBReader
 //  private GeometryFactory factory;
 //  private PrecisionModel precisionModel;
 //  // default dimension - will be set on read
-//  private int inputDimension = 2;
-//  private boolean hasSRID = false;
-//  private int SRID = 0;
+  private int inputDimension = 2;
+  private boolean hasSRID = false;
+  private int SRID = 0;
 //  private ByteOrderDataInStream dis = new ByteOrderDataInStream();
-//  private double[] ordValues;
-//
-//  public WKBReader() {
-//    this(new GeometryFactory());
-//  }
-//
-//  public WKBReader(GeometryFactory geometryFactory) {
-//    this.factory = geometryFactory;
-//    precisionModel = factory.getPrecisionModel();
-//  }
-//
-	class ParseException extends Exception{
-		public ParseException(){
+  private DataInputStream dis; // = new ByteArrayInputStream();
+  private double[] ordValues;
+  private byte byteOrder;
+
+  public	class WKBParseException extends Exception{
+		public WKBParseException(){
 			super();
 		}
-		public ParseException(String s){
+		public WKBParseException(String s){
 			super(s);
 		}
 	}
-//  /**
-//   * Reads a single {@link Geometry} from a byte array.
-//   *
-//   * @param bytes the byte array to read from
-//   * @return the geometry read
-//   * @throws ParseException if a parse exception occurs
-//   */
-  public Geometry read(byte[] bytes) throws ParseException
+
+  /**
+   * Reads a single {@link Geometry} from a byte array.
+   *
+   * @param bytes the byte array to read from
+   * @return the geometry read
+   * @throws WKBParseException if a parse exception occurs
+   */
+  public Geometry read(byte[] bytes) throws WKBParseException
   {
-	  // TODO
-	  return null;
+    // possibly reuse the ByteArrayInStream?
+    // don't throw IOExceptions, since we are not doing any I/O
+    try {
+      return read(new DataInputStream(new ByteArrayInputStream(bytes)));
+    }
+    catch (IOException ex) {
+      throw new RuntimeException("Unexpected IOException caught: " + ex.getMessage());
+    }
   }
-//    // possibly reuse the ByteArrayInStream?
-//    // don't throw IOExceptions, since we are not doing any I/O
-//    try {
-//      return read(new ByteArrayInStream(bytes));
-//    }
-//    catch (IOException ex) {
-//      throw new RuntimeException("Unexpected IOException caught: " + ex.getMessage());
-//    }
-//  }
-//
-//  /**
-//   * Reads a {@link Geometry} from an {@link InStream).
-//   *
-//   * @param is the stream to read from
-//   * @return the Geometry read
-//   * @throws IOException
-//   * @throws ParseException
-//   */
-//  public Geometry read(InStream is)
-//  throws IOException, ParseException
-//  {
-//    dis.setInStream(is);
-//    Geometry g = readGeometry();
-//    setSRID(g);
-//    return g;
-//  }
-//
-//  private Geometry readGeometry()
-//  throws IOException, ParseException
-//  {
-//    // determine byte order
-//    byte byteOrder = dis.readByte();
-//    // default is big endian
-//    if (byteOrder == WKBConstants.wkbNDR)
-//      dis.setOrder(ByteOrderValues.LITTLE_ENDIAN);
-//
-//    int typeInt = dis.readInt();
-//    int geometryType = typeInt & 0xff;
-//    // determine if Z values are present
-//    boolean hasZ = (typeInt & 0x80000000) != 0;
-//    inputDimension =  hasZ ? 3 : 2;
-//    // determine if SRIDs are present
-//    hasSRID = (typeInt & 0x20000000) != 0;
-//
-//    if (hasSRID) {
-//      SRID = dis.readInt();
-//    }
-//
-//    // only allocate ordValues buffer if necessary
-//    if (ordValues == null || ordValues.length < inputDimension)
-//      ordValues = new double[inputDimension];
-//
-//    switch (geometryType) {
-//      case WKBConstants.wkbPoint :
-//        return readPoint();
-//      case WKBConstants.wkbLineString :
-//        return readLineString();
-//      case WKBConstants.wkbPolygon :
-//        return readPolygon();
-//      case WKBConstants.wkbMultiPoint :
-//        return readMultiPoint();
-//      case WKBConstants.wkbMultiLineString :
-//        return readMultiLineString();
-//      case WKBConstants.wkbMultiPolygon :
-//        return readMultiPolygon();
-//      case WKBConstants.wkbGeometryCollection :
-//        return readGeometryCollection();
-//    }
-//    throw new ParseException("Unknown WKB type " + geometryType);
-//    //return null;
-//  }
-//
-//  /**
-//   * Sets the SRID, if it was specified in the WKB
-//   *
-//   * @param g the geometry to update
-//   * @return the geometry with an updated SRID value, if required
-//   */
-//  private Geometry setSRID(Geometry g)
-//  {
-//    if (SRID != 0)
-//      g.setSRID(SRID);
-//    return g;
-//  }
-//
-//  private Point readPoint() throws IOException
-//  {
-//    CoordinateSequence pts = readCoordinateSequence(1);
-//    return factory.createPoint(pts);
-//  }
-//
-//  private LineString readLineString() throws IOException
-//  {
-//    int size = dis.readInt();
-//    CoordinateSequence pts = readCoordinateSequence(size);
-//    return factory.createLineString(pts);
-//  }
-//
-//  private LinearRing readLinearRing() throws IOException
-//  {
-//    int size = dis.readInt();
-//    CoordinateSequence pts = readCoordinateSequence(size);
-//    return factory.createLinearRing(pts);
-//  }
-//
-//  private Polygon readPolygon() throws IOException
-//  {
-//    int numRings = dis.readInt();
-//    LinearRing[] holes = null;
-//    if (numRings > 1)
-//      holes = new LinearRing[numRings - 1];
-//
-//    LinearRing shell = readLinearRing();
-//    for (int i = 0; i < numRings - 1; i++) {
-//      holes[i] = readLinearRing();
-//    }
-//    return factory.createPolygon(shell, holes);
-//  }
-//
-//  private MultiPoint readMultiPoint() throws IOException, ParseException
-//  {
-//    int numGeom = dis.readInt();
-//    Point[] geoms = new Point[numGeom];
-//    for (int i = 0; i < numGeom; i++) {
-//      Geometry g = readGeometry();
-//      if (! (g instanceof Point))
-//        throw new ParseException(INVALID_GEOM_TYPE_MSG + "MultiPoint");
-//      geoms[i] = (Point) g;
-//    }
-//    return factory.createMultiPoint(geoms);
-//  }
-//
-//  private MultiLineString readMultiLineString() throws IOException, ParseException
-//  {
-//    int numGeom = dis.readInt();
-//    LineString[] geoms = new LineString[numGeom];
-//    for (int i = 0; i < numGeom; i++) {
-//      Geometry g = readGeometry();
-//      if (! (g instanceof LineString))
-//        throw new ParseException(INVALID_GEOM_TYPE_MSG + "MultiLineString");
-//      geoms[i] = (LineString) g;
-//    }
-//    return factory.createMultiLineString(geoms);
-//  }
-//
-//  private MultiPolygon readMultiPolygon() throws IOException, ParseException
-//  {
-//    int numGeom = dis.readInt();
-//    Polygon[] geoms = new Polygon[numGeom];
-//    for (int i = 0; i < numGeom; i++) {
-//      Geometry g = readGeometry();
-//      if (! (g instanceof Polygon))
-//        throw new ParseException(INVALID_GEOM_TYPE_MSG + "MultiPolygon");
-//      geoms[i] = (Polygon) g;
-//    }
-//    return factory.createMultiPolygon(geoms);
-//  }
-//
-//  private GeometryCollection readGeometryCollection() throws IOException, ParseException
-//  {
-//    int numGeom = dis.readInt();
-//    Geometry[] geoms = new Geometry[numGeom];
-//    for (int i = 0; i < numGeom; i++) {
-//      geoms[i] = readGeometry();
-//    }
-//    return factory.createGeometryCollection(geoms);
-//  }
-//
-//  private CoordinateSequence readCoordinateSequence(int size) throws IOException
-//  {
-//    CoordinateSequence seq = factory.getCoordinateSequenceFactory().create(size, inputDimension);
-//    int targetDim = seq.getDimension();
-//    if (targetDim > inputDimension)
-//      targetDim = inputDimension;
-//    for (int i = 0; i < size; i++) {
-//      readCoordinate();
-//      for (int j = 0; j < targetDim; j++) {
-//        seq.setOrdinate(i, j, ordValues[j]);
-//      }
-//    }
-//    return seq;
-//  }
-//
-//  /**
-//   * Reads a coordinate value with the specified dimensionality.
-//   * Makes the X and Y ordinates precise according to the precision model
-//   * in use.
-//   */
-//  private void readCoordinate() throws IOException
-//  {
-//    for (int i = 0; i < inputDimension; i++) {
-//      if (i <= 1) {
-//        ordValues[i] = precisionModel.makePrecise(dis.readDouble());
-//      }
-//      else {
-//        ordValues[i] = dis.readDouble();
-//      }
-//
-//    }
-//  }
+
+  /**
+   * Reads a {@link Geometry} from an {@link InStream).
+   *
+   * @param is the stream to read from
+   * @return the Geometry read
+   * @throws IOException
+   * @throws WKBParseException
+   */
+  public Geometry read(DataInputStream is)
+  throws IOException, WKBParseException
+  {
+    dis=is;
+    Geometry g = readGeometry();
+    setSRID(g);
+    return g;
+  }
+
+  private Geometry readGeometry()
+  throws IOException, WKBParseException
+  {
+    // determine byte order
+    byteOrder = dis.readByte();
+    // default is big endian
+  //  if (byteOrder == WKBConstants.wkbNDR)
+  //    dis.setOrder(ByteOrderValues.LITTLE_ENDIAN);
+
+    int typeInt = dis.readInt();
+    int geometryType = typeInt & 0xff;
+    // determine if Z values are present
+    boolean hasZ = (typeInt & 0x80000000) != 0;
+    inputDimension =  hasZ ? 3 : 2;
+    // determine if SRIDs are present
+    hasSRID = (typeInt & 0x20000000) != 0;
+
+    if (hasSRID) {
+      SRID = dis.readInt();
+    }
+
+    // only allocate ordValues buffer if necessary
+    if (ordValues == null || ordValues.length < inputDimension)
+      ordValues = new double[inputDimension];
+
+    switch (geometryType) {
+      case WKBConstants.wkbPoint :
+        return readPoint();
+      case WKBConstants.wkbLineString :
+        return readLineString();
+      case WKBConstants.wkbPolygon :
+        return readPolygon();
+      case WKBConstants.wkbMultiPoint :
+        return readMultiPoint();
+      case WKBConstants.wkbMultiLineString :
+        return readMultiLineString();
+      case WKBConstants.wkbMultiPolygon :
+        return readMultiPolygon();
+      case WKBConstants.wkbGeometryCollection :
+        return readGeometryCollection();
+    }
+    throw new WKBParseException("Unknown WKB type " + geometryType);
+    //return null;
+  }
+
+  /**
+   * Sets the SRID, if it was specified in the WKB
+   *
+   * @param g the geometry to update
+   * @return the geometry with an updated SRID value, if required
+   */
+  private Geometry setSRID(Geometry g)
+  {
+    if (SRID != 0)
+      g.setSRID(SRID);
+    return g;
+  }
+
+  private Point readPoint() throws IOException
+  {
+    readCoordinate();
+    return new Point(ordValues[0],ordValues[1]);
+  }
+
+   private LineString readLineString() throws IOException
+  {
+    int size = dis.readInt();
+    LineString pts = readCoordinateSequence(size);
+    return pts;
+  }
+
+  private Polygon readPolygon() throws IOException
+  {
+    int numRings = dis.readInt();
+    LineString[] rings=new LineString[numRings];
+    for (int i = 0; i < numRings ; i++) {
+      rings[i] = readLineString();
+    }
+    return new Polygon(rings);
+  }
+
+  private MultiPoint readMultiPoint() throws IOException, WKBParseException
+  {
+    int numGeom = dis.readInt();
+    Point[] geoms = new Point[numGeom];
+    for (int i = 0; i < numGeom; i++) {
+      Geometry g = readGeometry();
+      if (! (g instanceof Point))
+        throw new WKBParseException("Parse Error" + "MultiPoint");
+      geoms[i] = (Point) g;
+    }
+    return new MultiPoint(geoms);
+  }
+
+  private MultiLineString readMultiLineString() throws IOException, WKBParseException
+  {
+    int numGeom = dis.readInt();
+    LineString[] geoms = new LineString[numGeom];
+    for (int i = 0; i < numGeom; i++) {
+      Geometry g = readGeometry();
+      if (! (g instanceof LineString))
+        throw new WKBParseException("Parse Error" + "MultiLineString");
+      geoms[i] = (LineString) g;
+    }
+    return new MultiLineString(geoms);
+  }
+
+  private MultiPolygon readMultiPolygon() throws IOException, WKBParseException
+  {
+    int numGeom = dis.readInt();
+    Polygon[] geoms = new Polygon[numGeom];
+    for (int i = 0; i < numGeom; i++) {
+      Geometry g = readGeometry();
+      if (! (g instanceof Polygon))
+        throw new WKBParseException("ParseError" + "MultiPolygon");
+      geoms[i] = (Polygon) g;
+    }
+    return new MultiPolygon(geoms);
+  }
+
+  private MultiGeometry readGeometryCollection() throws IOException, WKBParseException
+  {
+    int numGeom = dis.readInt();
+    Geometry[] geoms = new Geometry[numGeom];
+    for (int i = 0; i < numGeom; i++) {
+       geoms[i]= readGeometry();
+    }
+    return new MultiGeometry(geoms);
+  }
+
+  private LineString readCoordinateSequence(int size) throws IOException
+  {
+    Point[] pts=new Point[size];
+    for (int i = 0; i < size; i++) {
+      readCoordinate();
+      pts[i]=new Point(ordValues[0],ordValues[1]);
+    }
+    return new LineString(pts);
+  }
+
+  /**
+   * Reads a coordinate value with the specified dimensionality.
+   * Makes the X and Y ordinates precise according to the precision model
+   * in use.
+   */
+  private void readCoordinate() throws IOException
+  {
+    for (int i = 0; i < inputDimension; i++) {
+        ordValues[i] = dis.readDouble();
+       }
+  }
 
 }

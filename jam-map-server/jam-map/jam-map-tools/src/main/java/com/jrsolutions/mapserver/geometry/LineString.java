@@ -9,6 +9,9 @@ public class LineString extends Geometry{
 	public LineString(){
 		puntos=new Point[0];
 	}
+	public LineString(Point[] pts){
+		puntos=pts;
+	}
 	/**
 	 * Only create the array, don't fill the points, so 
 	 *  {@link #getNumPoints()} it's not valid
@@ -89,7 +92,8 @@ public class LineString extends Geometry{
 		cuenta para evitar el error M = Distancia / sen(Beta/2) cuando sen(Beta/2)=0.
 		*/
 
-		LineString lineaParal= new LineString(getNumPoints());
+		//LineString lineaParal= new LineString(getNumPoints());
+		LineString lineaParal= new LineString();
 		Point ptoAnt = getPoint(0);
 		double ox=ptoAnt.getX();
 		double oy=ptoAnt.getY();
@@ -145,12 +149,16 @@ public class LineString extends Geometry{
 			a2= Pi/2.0;
 			if (oy < y)
 				a2= -a2;
-		}
-		else
+		}else{
 			a2= Math.atan2(oy-y, ox-x);
+		}
 		x1= ox+distancia*(Math.sin(a2));
 		y1= oy-distancia*(Math.cos(a2));
 		lineaParal.addPoint(new Point(x1,y1));
+		
+		System.out.println("LINEA:"+this);
+		System.out.println("PARAL:"+lineaParal);
+		
 		return lineaParal;
 	}
 	
