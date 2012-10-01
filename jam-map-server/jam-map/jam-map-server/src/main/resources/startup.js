@@ -6,7 +6,7 @@ importPackage(com.jrsolutions.mapserver.render);
          var iconPath="/data/map-icons/icons/";
          
         function createSymb(a,b,c){
-        	var simb= xxxx.createSymboly()
+        	var simb= xxxx.createSymbology()
                           .addLineColor(b)
                           .addNodeSymbol(1,a)
                           .addSurfaceColor(c);
@@ -16,7 +16,11 @@ importPackage(com.jrsolutions.mapserver.render);
         var s=(new Simbology()).addLineColor(0xaaaaaa); 
         
         var greenLine  = (new Simbology()).addLineColor(0x00FF00);
-        var redLine    = (new Simbology()).addLineColor(0xFF0000);
+        var redLine    = (new Simbology())
+        						.addLinePrim(new LineColor(0xFF0000,8))
+        						.addLinePrim(new LineParal(4, new LineColor(0xffffff)))
+        						.addLinePrim(new LineParal(-4,new LineColor(0xffffff)))
+        						;
         var blueLine   = (new Simbology()).addLineColor(0x0000FF);
         var cyanLine   = (new Simbology()).addLineColor(0x00FFFF);
         var grayLine   = (new Simbology()).addLineColor(0xcccccc);
@@ -28,7 +32,7 @@ importPackage(com.jrsolutions.mapserver.render);
         var whiteLine  = (new Simbology()).addLineColor(0xffffff);
         var pinkLine   = (new Simbology()).addLineColor(0xFF69B4);
         
-        var TxtTypeName = (new  Simboly())
+        var TxtTypeName = (new  Simbology())
         		.addNodeText    (0 ,0,0x00ff00,"name",15,13,"","N")
                 .addNodeText    (0 ,0,0xcc0000,"type",15,13,"","S")
         		.addMidPointText(0, 0,0xff00ff,"name",15,13,"","N")
@@ -63,6 +67,7 @@ importPackage(com.jrsolutions.mapserver.render);
          		.setZoomLimits(11,19)
          		.where("type","trunk",redLine)
          		.where("type","motorway",redLine)
+         		.where("type","motorway_link",redLine)
          		.where("type","tertiary",blueLine)
          		.where("type","residential",cyanLine)
          		.where("type","cycleway",greenLine) 
