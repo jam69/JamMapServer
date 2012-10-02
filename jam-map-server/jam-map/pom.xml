@@ -16,6 +16,7 @@
   <modules>
     <module>jam-map-tools</module>
     <module>jam-map-server</module>
+	<module>jam-map-swing</module>
   </modules>
 
   <build>

@@ -1,7 +1,9 @@
 package com.jrsolutions.mapserver.servlet;
 
 import java.awt.Graphics2D;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.Reader;
 import java.util.ArrayList;
 
@@ -11,6 +13,7 @@ import javax.script.ScriptException;
 
 import com.jrsolutions.mapserver.MapUtil;
 import com.jrsolutions.mapserver.database.DataRepos;
+import com.jrsolutions.mapserver.geometry.Rect;
 import com.jrsolutions.mapserver.render.GeomLayer;
 import com.jrsolutions.mapserver.render.Mapper;
 
@@ -50,6 +53,15 @@ public class Mapa {
 		}
 	}
 
+	public void dumpWKB(Rect r,OutputStream out) throws IOException{
+		int zoom=16; //mapper.getZoomLevel();
+		for(GeomLayer layer:layers){
+			if(layer.getMaxZoom() >= zoom && layer.getMinZoom() <= zoom){
+				layer.dumpWKB(r,out); // zoom TOFIX
+			}
+		}
+	}
+	
 	// Create poiRepos
 	
 	public GeomLayer createGeomLayer(DataRepos dataRepos){
