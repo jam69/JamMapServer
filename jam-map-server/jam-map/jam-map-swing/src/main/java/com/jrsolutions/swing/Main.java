@@ -19,7 +19,7 @@ public class Main extends JFrame{
 	
 	public void open(){
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		MapComponent mapComponet=new MapComponent(SERVER_URL,-3.6,40.0,16);
+		MapComponent mapComponet=new MapComponent(SERVER_URL);
 		setContentPane(mapComponet);
 		setSize(300,400);
 		setVisible(true);
