@@ -158,7 +158,7 @@ public class Main {
 		}
 		ScriptEngineManager mgr = new ScriptEngineManager();
 		String fName=f.getName();
-		String fExt=fName.substring(fName.lastIndexOf("."));
+		String fExt=fName.substring(fName.lastIndexOf(".")+1);
 		ScriptEngine engine = mgr.getEngineByExtension(fExt);
 		if(engine==null){
 			// error: NO tengo engine para esa extension:

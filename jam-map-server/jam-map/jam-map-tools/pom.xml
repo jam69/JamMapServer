@@ -41,7 +41,7 @@
           <workingDirectory>/tmp</workingDirectory>
 		  <classpathScope>runtime</classpathScope>
 		  <arguments>
-		    <argument>-console</argument>
+		    <argument>-file</argument>
             <argument>resources/CopiaSHPaMySQL.js</argument>
           </arguments>
         </configuration>
