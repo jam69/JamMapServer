@@ -23,7 +23,7 @@ static {
 	int strategy=0;
 	String v=System.getProperty(CACHE_STRATEGY);
 	if(v==null){
-		strategy=0;
+		strategy=2;
 	}else{
 		if(v.equalsIgnoreCase("none")) strategy=0;
 		else if (v.equalsIgnoreCase("local"))strategy=1;

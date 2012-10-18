@@ -6,13 +6,23 @@ import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
 
+import org.apache.log4j.Logger;
+
 
 public class MyEhCache implements MyCache{
 	
-	private final CacheManager  cacheManager  = new CacheManager();
-	Ehcache cacheEh;
+	private static Logger log=Logger.getLogger(MyEhCache.class);
+	
+	static {
+		log.info("Iniciando Static");
+	}
+	
+	private static final CacheManager  cacheManager  = new CacheManager();
+
+	private Ehcache cacheEh;
 	
 	public MyEhCache(){
+		log.info("Arrancando");
 		cacheEh=cacheManager.getEhcache("uno");	
 	}
 	
