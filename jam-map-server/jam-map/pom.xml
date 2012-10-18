@@ -12,13 +12,57 @@
   <artifactId>jam-map</artifactId>
   <packaging>pom</packaging>
   <name>JAM Map Server</name>
+  <description>Collection of utilities and server for Map rendering and processing </description>
+  <inceptionYear>2012</inceptionYear>
  
   <modules>
     <module>jam-map-tools</module>
     <module>jam-map-server</module>
-	<module>jam-map-swing</module>
+    <module>jam-map-swing</module>
   </modules>
 
+  <developers>
+     <developer>
+       <id>jamartinm</id>
+       <name>Jose Antonio Martin Martin</name>
+       <!--<email></email>  -->
+       <!--<organization></organization> -->
+       <roles>
+           <role>Master of Universe</role>
+       </roles>
+       <timezone>+1</timezone>
+     </developer>
+  </developers>    
+    
+	<licenses> 
+       <license>
+    	   <name>GPL</name>
+    	   <!-- <url>GPL</url> -->
+    	   <distribution>repo</distribution>
+       </license>
+    </licenses>
+	
+    <issueManagement>
+    	<system>github</system>
+    	<url>https://github.com/jam69/JamMapServer/issues</url>
+    </issueManagement>
+	
+    <!--<mailingLists>
+      <mailingList>
+      	<name> GitHub</name>
+      	<post> users.JamMapServer@github.com</post>
+      	<subscribe>user-subscribe@github.com</subscribe>
+      	<unsubscribe>user-unsubscribe@github.com</unsubscribe>
+      	<archive></archive>
+      </mailingList>
+    </mailingLists>  -->
+    
+  <scm>
+    	<url>https://github.com/jam69/JamMapServer/</url>
+    	<connection>scm:git://github.com/jam69/JamMapServer.git</connection>
+    	<developerConnection>scm:git@github.com:jam69/JamMapServer.git</developerConnection>
+  </scm>
+  
   <build>
     <pluginManagement>
     <plugins>
