@@ -69,11 +69,11 @@ public class Simbology {
 		return this;
 	}
 	
-	public void paint(Mapper m, Graphics2D g, Entity ent){
+	public void paint(IMapper m, Graphics2D g, Entity ent){
 		paint(m,g,ent.getGeom(),ent);
 	}
 	
-	public void paint(Mapper m, Graphics2D g,Geometry geom, Entity ent){
+	public void paint(IMapper m, Graphics2D g,Geometry geom, Entity ent){
 			if(geom instanceof MultiGeometry){
 				MultiGeometry mg=(MultiGeometry)geom;
 				Iterator<Geometry> it=mg.iterator();

@@ -8,7 +8,7 @@ import java.io.IOException;
  *
  *  B-tree.
  *
- * Copyright © 2002–2010, Robert Sedgewick and Kevin Wayne. 
+ * Copyright Â© 2002â€“2010, Robert Sedgewick and Kevin Wayne. 
  * 
  *  Limitations
  *  -----------

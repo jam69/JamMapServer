@@ -1,6 +1,6 @@
 /**
- * <p>Title: java访问DBF文件的接口</p>
- * <p>Description: 测试DBF文件的读写</p>
+ * <p>Title: java路脙脦脢DBF脦脛录镁碌脛陆脫驴脷</p>
+ * <p>Description: 虏芒脢脭DBF脦脛录镁碌脛露脕脨麓</p>
  * <p>Copyright: Copyright (c) 2004</p>
  * <p>Company: ict</p>
  * @author : He Xiong

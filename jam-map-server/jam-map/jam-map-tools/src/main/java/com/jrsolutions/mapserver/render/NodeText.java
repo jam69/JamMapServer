@@ -84,12 +84,12 @@ public class NodeText extends NodeSimbology {
 		}
 		
 		@Override
-		public void paint(Mapper m, Graphics2D g,Point p,double angle, Entity ent) {
+		public void paint(IMapper m, Graphics2D g,Point p,double angle, Entity ent) {
 			paint(m,g,p,angle,p.getX(),p.getY(), ent);
 		}
 
 		@Override
-		public void paint(Mapper m, Graphics2D g,Point p, Entity ent) {
+		public void paint(IMapper m, Graphics2D g,Point p, Entity ent) {
 			paint(m,g,p,0.0,p.getX(),p.getY(), ent);
 
 //			if(m.getZoomLevel()<zmin)return;
@@ -106,15 +106,16 @@ public class NodeText extends NodeSimbology {
 
 		// falta probar el link, el subrayado
 		// falta dibujar siempre los textos para arriba (no para abajo)
-		public void paint(Mapper m, Graphics2D g, Point p, double angulo, double mx, double my,Entity ent) {
+		public void paint(IMapper m, Graphics2D g, Point p, double angulo, double mx, double my,Entity ent) {
 			if(m.getZoomLevel()<zmin)return;
 			Object obj=ent.getAttr(attrName);
 //		System.out.println(">>>><>"+obj+"=="+ent);
 			if(obj==null)return;
 			String str=obj.toString(); // Formatter
 			if(str.length()==0)return;
-			int tx=m.posX(p.getX());
-			int ty=m.posY(p.getY());
+                        int[] pp=m.pos(p.getX(),p.getY());
+			int tx=pp[0];
+			int ty=pp[1];
 //		System.out.println("------------>>>>"+tx+" - "+ty);
 			
 			float tam=size; // por ahora los textos no se escalan

@@ -7,5 +7,5 @@ import com.jrsolutions.mapserver.geometry.Polygon;
 
 abstract public class SurfaceSimbology {
 
-	abstract public void paint(Mapper m, Graphics2D g,Polygon poly, Entity ent);
+	abstract public void paint(IMapper m, Graphics2D g,Polygon poly, Entity ent);
 }

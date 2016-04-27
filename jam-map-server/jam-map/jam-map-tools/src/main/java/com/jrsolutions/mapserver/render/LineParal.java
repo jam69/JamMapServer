@@ -19,7 +19,7 @@ public class LineParal extends LineSimbology{
 	}
 	
 	@Override
-	public void paint(Mapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
+	public void paint(IMapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
 	
 		Shape r=mapper.mapLine(line);
 		

@@ -17,7 +17,7 @@
  *  
  *  
  */
-var dir="/Data/spain/";
+var dir="/Users/joseantoniomartin/Documents/projects/JamMapServer/Data/spain/";
 var dbURL="jdbc:mysql://localhost:3306/mapas?user=root&password=root";
 
 function copyShpToMySQL(filePath, dbURL, tableName){

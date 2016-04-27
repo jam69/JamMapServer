@@ -19,7 +19,7 @@ public class LineRepPoint extends LineSimbology{
 	}
 
 	@Override
-	public void paint(Mapper mapper, Graphics2D g, LineString linea, Entity ent,boolean closed) {	 
+	public void paint(IMapper mapper, Graphics2D g, LineString linea, Entity ent,boolean closed) {	 
 		if(linea.getNumPoints()==0)return;
 		Point ptoAnt = linea.getPoint(0);
 		double ox=ptoAnt.getX();

@@ -3,9 +3,7 @@ package com.jrsolutions.mapserver.render;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.Stroke;
-import java.awt.geom.GeneralPath;
 import java.util.Iterator;
 
 import com.jrsolutions.mapserver.database.Entity;
@@ -39,13 +37,13 @@ public class LineColor extends LineSimbology{
 	}
 	
 	@Override
-	public void paint(Mapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
+	public void paint(IMapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
 		g.setColor(c);
 		g.setStroke(stroke);
 		g.draw(mapper.mapLine(line));
 	}
 
-	public void paint2(Mapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
+	public void paint2(IMapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
 			g.setColor(c);
 			g.setStroke(stroke);
 			Iterator<Point> it=line.iterator();		

@@ -14,7 +14,7 @@ public class SurfContour extends SurfaceSimbology{
 	}
 	
 	@Override
-	public void paint(Mapper mapper, Graphics2D g, Polygon s, Entity ent) {
+	public void paint(IMapper mapper, Graphics2D g, Polygon s, Entity ent) {
 		ns.paint(mapper,g,s.getExterior(),ent,true);
 	}
 	

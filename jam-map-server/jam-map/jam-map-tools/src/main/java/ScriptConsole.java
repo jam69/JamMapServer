@@ -212,7 +212,7 @@ public class ScriptConsole extends JScrollPane implements KeyListener,MouseListe
 		requestFocus();
 		
 		setStyle(Color.red);
-		println("Welcome to the Protégé shell");
+		println("Welcome to the ProtÃ©gÃ© shell");
 		setStyle(Color.black);
 		
 		addPrompt();

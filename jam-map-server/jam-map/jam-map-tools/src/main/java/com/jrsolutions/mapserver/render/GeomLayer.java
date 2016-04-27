@@ -78,7 +78,7 @@ public class GeomLayer {
 	}
 	
 	/**  -- metodos de implementacion -- **/
-	public void render(Mapper m,Graphics2D g){
+	public void render(IMapper m,Graphics2D g){
 		Iterator<Entity> it=repos.getIterator(m.getZoom().increase(.001,.001));
 		while(it.hasNext()){
 			Entity ent=it.next();

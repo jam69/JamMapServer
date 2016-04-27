@@ -1,6 +1,6 @@
 /**
- * <p>Title: java访问DBF文件的接口</p>
- * <p>Description: 这个类用于表示DBF文件中的读操作</p>
+ * <p>Title: java路脙脦脢DBF脦脛录镁碌脛陆脫驴脷</p>
+ * <p>Description: 脮芒赂枚脌脿脫脙脫脷卤铆脢戮DBF脦脛录镁脰脨碌脛露脕虏脵脳梅</p>
  * <p>Copyright: Copyright (c) 2004</p>
  * <p>Company: ict</p>
  * @author : He Xiong
@@ -18,9 +18,9 @@ import java.io.InputStream;
 
 public class DBFReader {
   /**
-   * 构造函数
-   * @param s dbf文件的文件名
-   * @throws JDBFException 文件没有找到时会抛出异常
+   * 鹿鹿脭矛潞炉脢媒
+   * @param s dbf脦脛录镁碌脛脦脛录镁脙没
+   * @throws JDBFException 脦脛录镁脙禄脫脨脮脪碌陆脢卤禄谩脜脳鲁枚脪矛鲁拢
    */
   public DBFReader(String s) throws JDBFException {
     stream = null;
@@ -35,8 +35,8 @@ public class DBFReader {
     }
   }
   /**
-   * 使用inputstream来构造DBFReader
-   * @param inputstream 输入流
+   * 脢鹿脫脙inputstream脌麓鹿鹿脭矛DBFReader
+   * @param inputstream 脢盲脠毛脕梅
    * @throws JDBFException
    */
   public DBFReader(InputStream inputstream) throws JDBFException {
@@ -47,9 +47,9 @@ public class DBFReader {
   }
 
   /**
-   * 初始化读操作
-   * @param inputstream 输入流，可以是文件输入流，也可以是别的输入流
-   * @throws JDBFException 当发生文件IO异常时会抛出
+   * 鲁玫脢录禄炉露脕虏脵脳梅
+   * @param inputstream 脢盲脠毛脕梅拢卢驴脡脪脭脢脟脦脛录镁脢盲脠毛脕梅拢卢脪虏驴脡脪脭脢脟卤冒碌脛脢盲脠毛脕梅
+   * @throws JDBFException 碌卤路垄脡煤脦脛录镁IO脪矛鲁拢脢卤禄谩脜脳鲁枚
    */
   private void init(InputStream inputstream) throws JDBFException {
     try {
@@ -77,7 +77,7 @@ public class DBFReader {
         nextRecord = null;
         stream.close();
       }
-      //判断0x20或0x2a是否位于nextRecord当中
+      //脜脨露脧0x20禄貌0x2a脢脟路帽脦禄脫脷nextRecord碌卤脰脨
       int pos = 0;
       boolean hasBegin = false;
       for (int p = 0; p < j; p++) {
@@ -91,7 +91,7 @@ public class DBFReader {
         byte[] others = new byte[pos];
         stream.readFully(others);
 
-        //将nextRecord中的字节挪动pos个位置
+        //陆芦nextRecord脰脨碌脛脳脰陆脷脜虏露炉pos赂枚脦禄脰脙
         for (int p = 0; p < j - pos; p++) {
           nextRecord[p] = nextRecord[p + pos];
         }
@@ -107,8 +107,8 @@ public class DBFReader {
   }
 
   /**
-   * 读取dbf文件的文件头
-   * @return dbf文件中一个表的最大字段数，但不一定是有效个数
+   * 露脕脠隆dbf脦脛录镁碌脛脦脛录镁脥路
+   * @return dbf脦脛录镁脰脨脪禄赂枚卤铆碌脛脳卯麓贸脳脰露脦脢媒拢卢碌芦虏禄脪禄露篓脢脟脫脨脨搂赂枚脢媒
    * @throws IOException
    * @throws JDBFException
    */
@@ -136,9 +136,9 @@ public class DBFReader {
   }
 
   /**
-   * 读取一个字段
-   * @return 一个字段的描述 JDBField,如果字段描述以0X0D或0X00开头，那么就返回一
-   * 个null值
+   * 露脕脠隆脪禄赂枚脳脰露脦
+   * @return 脪禄赂枚脳脰露脦碌脛脙猫脢枚 JDBField,脠莽鹿没脳脰露脦脙猫脢枚脪脭0X0D禄貌0X00驴陋脥路拢卢脛脟脙麓戮脥路碌禄脴脪禄
+   * 赂枚null脰碌
    * @see JDBField
    * @throws IOException
    * @throws JDBFException
@@ -151,14 +151,14 @@ public class DBFReader {
     catch (EOFException eofexception) {
       throw new JDBFException("Unexpected end of file reached.");
     }
-    //如果字段定义以'0D'开头，则是无效字段，返回一个空的JDBField
+    //脠莽鹿没脳脰露脦露篓脪氓脪脭'0D'驴陋脥路拢卢脭貌脢脟脦脼脨搂脳脰露脦拢卢路碌禄脴脪禄赂枚驴脮碌脛JDBField
     //
     if (abyte0[0] == 0X0D || abyte0[0] == 0X00) {
       stream.readFully(abyte0);
       return null;
     }
 
-    //获取字段名
+    //禄帽脠隆脳脰露脦脙没
     StringBuffer stringbuffer = new StringBuffer(10);
     int i = 0;
     for (i = 0; i < 10; i++) {
@@ -186,16 +186,16 @@ public class DBFReader {
   }
 
   /**
-   * 获取有效字段个数
-   * @return 表中字段的个数
+   * 禄帽脠隆脫脨脨搂脳脰露脦赂枚脢媒
+   * @return 卤铆脰脨脳脰露脦碌脛赂枚脢媒
    */
   public int getFieldCount() {
     return nFieldCount; //fields.length;
   }
   /**
-   * 获取第i个字段，i从0开始记
-   * @param i 字段序号
-   * @return JDBField 第i个字段
+   * 禄帽脠隆碌脷i赂枚脳脰露脦拢卢i麓脫0驴陋脢录录脟
+   * @param i 脳脰露脦脨貌潞脜
+   * @return JDBField 碌脷i赂枚脳脰露脦
    * @see JDBField
    */
   public JDBField getField(int i) {
@@ -203,15 +203,15 @@ public class DBFReader {
   }
 
   /**
-   * 是否还有下一条记录
-   * @return 如果nextRecord不空，则返回真
+   * 脢脟路帽禄鹿脫脨脧脗脪禄脤玫录脟脗录
+   * @return 脠莽鹿没nextRecord虏禄驴脮拢卢脭貌路碌禄脴脮忙
    */
   public boolean hasNextRecord() {
     return nextRecord != null;
   }
   /**
-   * 读取dbf文件中的下一条记录
-   * @return 一个对象数组
+   * 露脕脠隆dbf脦脛录镁脰脨碌脛脧脗脪禄脤玫录脟脗录
+   * @return 脪禄赂枚露脭脧贸脢媒脳茅
    * @throws JDBFException
    */
   public Object[] nextRecord() throws JDBFException {
@@ -241,7 +241,7 @@ public class DBFReader {
   }
 
   /**
-   * 关闭整个文件
+   * 鹿脴卤脮脮没赂枚脦脛录镁
    * @throws JDBFException
    */
   public void close() throws JDBFException {
@@ -258,7 +258,7 @@ public class DBFReader {
   private JDBField fields[];
   private byte nextRecord[];
   /**
-   * 有效的字段个数
+   * 脫脨脨搂碌脛脳脰露脦赂枚脢媒
    */
   private int nFieldCount;
 }

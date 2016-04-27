@@ -15,7 +15,7 @@ public class LineMiddlePoint extends LineSimbology{
 	}
 	
 	@Override
-	public void paint(Mapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
+	public void paint(IMapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
 		int n=line.getNumPoints();
 		for(int i=1;i<n;i++){
 			Point p0=line.getPoint(i-1);

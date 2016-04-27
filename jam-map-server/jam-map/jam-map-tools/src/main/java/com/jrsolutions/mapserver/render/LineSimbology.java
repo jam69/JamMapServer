@@ -7,6 +7,6 @@ import com.jrsolutions.mapserver.geometry.LineString;
 
 abstract public class LineSimbology {
 
-	abstract public void paint(Mapper m, Graphics2D g,LineString line, Entity ent,boolean closed);
+	abstract public void paint(IMapper m, Graphics2D g,LineString line, Entity ent,boolean closed);
 	
 }

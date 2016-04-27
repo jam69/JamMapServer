@@ -18,20 +18,21 @@ public class SurfFillColor extends SurfaceSimbology{
 	}
 	
 	@Override
-	public void paint(Mapper mapper, Graphics2D g, Polygon s, Entity ent) {
+	public void paint(IMapper mapper, Graphics2D g, Polygon s, Entity ent) {
 		Iterator<LineString> it=s.iterator();
 		while(it.hasNext()){
 			paint(mapper,g,it.next(),ent);
 		}
 	}
 	
-	public void paint(Mapper mapper,Graphics2D g, LineString line,Entity ent){
+	public void paint(IMapper mapper,Graphics2D g, LineString line,Entity ent){
 		Point[] p=line.getPoints();
 		int[]x=new int[p.length];
 		int[]y=new int[p.length];
 		for(int i=0;i<line.getNumPoints();i++){
-			x[i]=mapper.posX(p[i].getX());
-			y[i]=mapper.posY(p[i].getY());								
+                        int[]pp=mapper.pos(p[i].getX(),p[i].getY());
+			x[i]=pp[0];
+			y[i]=pp[1];								
 		}
 		g.setColor(color);
 		g.fillPolygon(x, y,p.length);		

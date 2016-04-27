@@ -15,7 +15,7 @@ abstract public class NodeSimbology {
 	 * @param p
 	 * @param ent
 	 */
-	abstract public void paint(Mapper m, Graphics2D g,Point p, Entity ent);
+	abstract public void paint(IMapper m, Graphics2D g,Point p, Entity ent);
 
 	/**
 	 * Draw the point with angle
@@ -26,5 +26,5 @@ abstract public class NodeSimbology {
 	 * @param angle
 	 * @param ent
 	 */
-	abstract public void paint(Mapper m, Graphics2D g,Point p,double angle, Entity ent);
+	abstract public void paint(IMapper m, Graphics2D g,Point p,double angle, Entity ent);
 }

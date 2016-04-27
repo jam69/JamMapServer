@@ -1,6 +1,6 @@
 /**
- * <p>Title: java访问DBF文件的接口</p>
- * <p>Description: 这个类用于表示DBF文件中的字段</p>
+ * <p>Title: java路脙脦脢DBF脦脛录镁碌脛陆脫驴脷</p>
+ * <p>Description: 脮芒赂枚脌脿脫脙脫脷卤铆脢戮DBF脦脛录镁脰脨碌脛脳脰露脦</p>
  * <p>Copyright: Copyright (c) 2004</p>
  * <p>Company: ict</p>
  * @author : He Xiong
@@ -15,8 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * <p>Title: java访问DBF文件的接口</p>
- * <p>Description: 这个类用于表示DBF文件中的字段</p>
+ * <p>Title: java路脙脦脢DBF脦脛录镁碌脛陆脫驴脷</p>
+ * <p>Description: 脮芒赂枚脌脿脫脙脫脷卤铆脢戮DBF脦脛录镁脰脨碌脛脳脰露脦</p>
  * <p>Copyright: Copyright (c) 2004</p>
  * <p>Company: ict</p>
  * @author : He Xiong
@@ -24,16 +24,16 @@ import java.util.Date;
  */
 public class JDBField {
   /**
-   * 构造函数
-   * @param s 字段名
-   * @param c 字段类型，使用一个字符来描述
-   *   'C' 字符串类型
-   *   'N' 数值类型
+   * 鹿鹿脭矛潞炉脢媒
+   * @param s 脳脰露脦脙没
+   * @param c 脳脰露脦脌脿脨脥拢卢脢鹿脫脙脪禄赂枚脳脰路没脌麓脙猫脢枚
+   *   'C' 脳脰路没麓庐脌脿脨脥
+   *   'N' 脢媒脰碌脌脿脨脥
    *   'D'
-   *   'F' 浮点类型
-   * @param i 长度
-   * @param j 小数位数
-   * @throws JDBFException 如果与字段类型定义不合，则会抛出异常
+   *   'F' 赂隆碌茫脌脿脨脥
+   * @param i 鲁陇露脠
+   * @param j 脨隆脢媒脦禄脢媒
+   * @throws JDBFException 脠莽鹿没脫毛脳脰露脦脌脿脨脥露篓脪氓虏禄潞脧拢卢脭貌禄谩脜脳鲁枚脪矛鲁拢
    */
   public JDBField(String s, char c, int i, int j) throws JDBFException {
     if (s.length() > 10) {
@@ -92,42 +92,42 @@ public class JDBField {
   }
 
   /**
-   * 获取字段名
-   * @return 字段名
+   * 禄帽脠隆脳脰露脦脙没
+   * @return 脳脰露脦脙没
    */
   public String getName() {
     return name;
   }
 
   /**
-   * 获取字段类型
-   * @return 字段类型
+   * 禄帽脠隆脳脰露脦脌脿脨脥
+   * @return 脳脰露脦脌脿脨脥
    */
   public char getType() {
     return type;
   }
 
   /**
-   * 获取字段长度
-   * @return 字段长度
+   * 禄帽脠隆脳脰露脦鲁陇露脠
+   * @return 脳脰露脦鲁陇露脠
    */
   public int getLength() {
     return length;
   }
 
   /**
-   * 获取字段的小数位数
-   * @return 字段小数位数
+   * 禄帽脠隆脳脰露脦碌脛脨隆脢媒脦禄脢媒
+   * @return 脳脰露脦脨隆脢媒脦禄脢媒
    */
   public int getDecimalCount() {
     return decimalCount;
   }
 
   /**
-   * 将对象格式化为一个字符串
-   * @param obj 流中的对象
-   * @return 用于表示字段值的对象
-   * @throws JDBFException 当读取时发生错误时，抛出异常
+   * 陆芦露脭脧贸赂帽脢陆禄炉脦陋脪禄赂枚脳脰路没麓庐
+   * @param obj 脕梅脰脨碌脛露脭脧贸
+   * @return 脫脙脫脷卤铆脢戮脳脰露脦脰碌碌脛露脭脧贸
+   * @throws JDBFException 碌卤露脕脠隆脢卤路垄脡煤麓铆脦贸脢卤拢卢脜脳鲁枚脪矛鲁拢
    */
   public String format(Object obj) throws JDBFException {
     if (type == 'N' || type == 'F') {
@@ -218,10 +218,10 @@ public class JDBField {
   }
 
   /**
-   * 将一个字符串解析为对应的字段值类型对象
-   * @param s 表示字段值的字符串
-   * @return 对应的字段值类型对象
-   * @throws JDBFException 解析出错时抛出
+   * 陆芦脪禄赂枚脳脰路没麓庐陆芒脦枚脦陋露脭脫娄碌脛脳脰露脦脰碌脌脿脨脥露脭脧贸
+   * @param s 卤铆脢戮脳脰露脦脰碌碌脛脳脰路没麓庐
+   * @return 露脭脫娄碌脛脳脰露脦脰碌脌脿脨脥露脭脧贸
+   * @throws JDBFException 陆芒脦枚鲁枚麓铆脢卤脜脳鲁枚
    */
   public Object parse(String s) throws JDBFException {
     s = s.trim();
@@ -275,27 +275,27 @@ public class JDBField {
   }
 
   /**
-   * 获取字段名
-   * @return 字段名
+   * 禄帽脠隆脳脰露脦脙没
+   * @return 脳脰露脦脙没
    */
   public String toString() {
     return name;
   }
 
   /**
-   * 字段名
+   * 脳脰露脦脙没
    */
   private String name;
   /**
-   * 字段类型
+   * 脳脰露脦脌脿脨脥
    */
   private char type;
   /**
-   * 字段长度
+   * 脳脰露脦鲁陇露脠
    */
   private int length;
   /**
-   * 字段的小数位数
+   * 脳脰露脦碌脛脨隆脢媒脦禄脢媒
    */
   private int decimalCount;
 }

@@ -1,6 +1,6 @@
 /**
- * <p>Title: java访问DBF文件的接口</p>
- * <p>Description: 测试DBF文件的读写</p>
+ * <p>Title: java路脙脦脢DBF脦脛录镁碌脛陆脫驴脷</p>
+ * <p>Description: 虏芒脢脭DBF脦脛录镁碌脛露脕脨麓</p>
  * <p>Copyright: Copyright (c) 2004</p>
  * <p>Company: ict</p>
  * @author : He Xiong
@@ -24,8 +24,8 @@ public class TestWrite
         JDBField[] fields = {
             new JDBField("ID", 'C', 8, 0),
             new JDBField("Name", 'C', 32, 0),
-            new JDBField("TestN", 'N', 20, 0), //第三个参数值一定不大于20
-            new JDBField("TestF", 'F', 20, 6), //F类型与N类型同,且第四个参数值有小数位数，否则会截短
+            new JDBField("TestN", 'N', 20, 0), //碌脷脠媒赂枚虏脦脢媒脰碌脪禄露篓虏禄麓贸脫脷20
+            new JDBField("TestF", 'F', 20, 6), //F脌脿脨脥脫毛N脌脿脨脥脥卢,脟脪碌脷脣脛赂枚虏脦脢媒脰碌脫脨脨隆脢媒脦禄脢媒拢卢路帽脭貌禄谩陆脴露脤
             new JDBField("TestD", 'D', 8, 0)
         };
         //DBFReader dbfreader = new DBFReader("E:\\hexiong\\work\\project\\book2.dbf");

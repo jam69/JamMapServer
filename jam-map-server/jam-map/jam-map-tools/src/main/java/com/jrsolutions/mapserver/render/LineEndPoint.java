@@ -15,7 +15,7 @@ public class LineEndPoint extends LineSimbology{
 	}
 	
 	@Override
-	public void paint(Mapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
+	public void paint(IMapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
 	    int n=line.getNumPoints();
 		if(n==0)return;
 	    Point p1=line.getPoint(n);

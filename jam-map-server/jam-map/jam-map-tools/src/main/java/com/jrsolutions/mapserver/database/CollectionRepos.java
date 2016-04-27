@@ -53,5 +53,9 @@ public class CollectionRepos implements DataRepos {
 		// TODO
 		return false;
 	}
+        
+        public void add(Entity entity){
+            world.add(entity);
+        }
 
 }

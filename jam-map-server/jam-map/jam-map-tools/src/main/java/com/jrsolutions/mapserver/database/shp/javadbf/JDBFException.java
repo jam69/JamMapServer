@@ -1,6 +1,6 @@
 /**
- * <p>Title: java访问DBF文件的接口</p>
- * <p>Description: 这个类用于表示DBF文件中的读写异常</p>
+ * <p>Title: java路脙脦脢DBF脦脛录镁碌脛陆脫驴脷</p>
+ * <p>Description: 脮芒赂枚脌脿脫脙脫脷卤铆脢戮DBF脦脛录镁脰脨碌脛露脕脨麓脪矛鲁拢</p>
  * <p>Copyright: Copyright (c) 2004</p>
  * <p>Company: ict</p>
  * @author : He Xiong
@@ -13,8 +13,8 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 
 /**
- * <p>Title: java访问DBF文件的接口</p>
- * <p>Description: 这个类用于表示DBF文件中的读写异常</p>
+ * <p>Title: java路脙脦脢DBF脦脛录镁碌脛陆脫驴脷</p>
+ * <p>Description: 脮芒赂枚脌脿脫脙脫脷卤铆脢戮DBF脦脛录镁脰脨碌脛露脕脨麓脪矛鲁拢</p>
  * <p>Copyright: Copyright (c) 2004</p>
  * <p>Company: ict</p>
  * @author : He Xiong
@@ -23,25 +23,25 @@ import java.io.PrintWriter;
 public class JDBFException
     extends Exception {
   /**
-   * 使用一个字符串来构造JDBFException
-   * @param s 异常的内容
+   * 脢鹿脫脙脪禄赂枚脳脰路没麓庐脌麓鹿鹿脭矛JDBFException
+   * @param s 脪矛鲁拢碌脛脛脷脠脻
    */
   public JDBFException(String s) {
     this(s, null);
   }
 
   /**
-   * 使用一个异常来构造JDBFException
-   * @param throwable 要抛出的异常
+   * 脢鹿脫脙脪禄赂枚脪矛鲁拢脌麓鹿鹿脭矛JDBFException
+   * @param throwable 脪陋脜脳鲁枚碌脛脪矛鲁拢
    */
   public JDBFException(Throwable throwable) {
     this(throwable.getMessage(), throwable);
   }
 
   /**
-   * 构造函数
-   * @param s 异常的内容
-   * @param throwable 一种异常
+   * 鹿鹿脭矛潞炉脢媒
+   * @param s 脪矛鲁拢碌脛脛脷脠脻
+   * @param throwable 脪禄脰脰脪矛鲁拢
    */
   public JDBFException(String s, Throwable throwable) {
     super(s);
@@ -49,8 +49,8 @@ public class JDBFException
   }
 
   /**
-   * 获取异常的具体内容
-   * @return 异常JDBFException的具体内容
+   * 禄帽脠隆脪矛鲁拢碌脛戮脽脤氓脛脷脠脻
+   * @return 脪矛鲁拢JDBFException碌脛戮脽脤氓脛脷脠脻
    */
   public String getMessage() {
     if (detail == null) {
@@ -62,7 +62,7 @@ public class JDBFException
   }
 
   /**
-   * 输出异常至屏幕
+   * 脢盲鲁枚脪矛鲁拢脰脕脝脕脛禄
    * @param printstream
    */
   public void printStackTrace(PrintStream printstream) {
@@ -99,7 +99,7 @@ public class JDBFException
   }
 
   /**
-   * 异常细节
+   * 脪矛鲁拢脧赂陆脷
    */
   private Throwable detail;
 }

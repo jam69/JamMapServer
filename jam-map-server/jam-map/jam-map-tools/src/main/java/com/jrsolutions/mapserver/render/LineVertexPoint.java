@@ -15,7 +15,7 @@ public class LineVertexPoint extends LineSimbology{
 	}
 	
 	@Override
-	public void paint(Mapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
+	public void paint(IMapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
 		int n=line.getNumPoints();
 		// Probably there is a better algorithm
 		for(int i=1;i<(n-1);i++){

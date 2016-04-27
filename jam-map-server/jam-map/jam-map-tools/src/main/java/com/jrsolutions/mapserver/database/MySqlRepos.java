@@ -418,7 +418,7 @@ public class MySqlRepos implements DataRepos{
 	}
 	}
 	
-	//Here’s the code that does the actual InputStream to Geometry conversion:
+	//Hereâ€™s the code that does the actual InputStream to Geometry conversion:
 
 	private Geometry getGeometryFromInputStream(InputStream inputStream) throws Exception {
 	 

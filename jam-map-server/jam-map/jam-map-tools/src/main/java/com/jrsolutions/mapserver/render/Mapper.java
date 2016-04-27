@@ -11,7 +11,6 @@ package com.jrsolutions.mapserver.render;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Point2D;
 
 import com.jrsolutions.mapserver.geometry.LineString;
 import com.jrsolutions.mapserver.geometry.Point;
@@ -28,7 +27,7 @@ import com.jrsolutions.mapserver.geometry.Rect;
  *
  ***********************************************************************
 */
-public class Mapper {
+public class Mapper  implements IMapper {
 		
 	private int ancho;
 	private int alto;
@@ -55,8 +54,8 @@ public class Mapper {
 		return m;
 	}
 	/**
-         * Indicamos que tamaño tiene nuestra ventana.
-         * Suponemos que nuestra ventana es de tamaño (0,0)-(ancho,alto)
+         * Indicamos que tamaÃ±o tiene nuestra ventana.
+         * Suponemos que nuestra ventana es de tamaÃ±o (0,0)-(ancho,alto)
          * Es fundamental que estos datos sean correctos.
          *
          * @param ancho Ancho en unidades(pixels) de la ventana.
@@ -92,7 +91,7 @@ public class Mapper {
 	/**
          * Devuelve la escala que estamos utilizando para dibujar.
          * Este valor son los metros que representa cada pixel.
-         * Si supieramos el tamaño del pixel (unidad de representacion) podríamos
+         * Si supieramos el tamaÃ±o del pixel (unidad de representacion) podrÃ­amos
          * tener la escala real.
          *
          * Esta funcion tiene sentido porque se mantiene la misma escala en
@@ -145,7 +144,7 @@ public class Mapper {
          * que se le pasa.
          *
          * Puede que devuelva valores fuera de la ventana actual (negativos o
-         * mayores que el tamaño de la ventana.
+         * mayores que el tamaÃ±o de la ventana.
          *
          * @param cx Coordenada horizontal real.
          * @return coordenada de ventana que le corresponde.
@@ -153,6 +152,13 @@ public class Mapper {
 	*/
 	public int posX(double cx) {
 		return (int)Math.round((cx-r.getXMin())*ancho/(r.getXMax()-r.getXMin()));
+	}
+        
+        public int[] pos(double cx,double cy) {
+                int[]p=new int[2];
+		p[0]= posX(cx);
+                p[1]=posY(cy);
+                return p;
 	}
 	
 	/**
@@ -172,7 +178,7 @@ public class Mapper {
          * que se le pasa.
          *
          * Puede que devuelva valores fuera de la ventana actual (negativos o
-         * mayores que el tamaño de la ventana.
+         * mayores que el tamaÃ±o de la ventana.
          *
          * @param cy Coordenada vertical real.
          * @return coordenada de ventana que le corresponde.
@@ -238,4 +244,14 @@ public class Mapper {
 	public void drawLine(double x, double y, double x2, double y2, Graphics g) {
 		g.drawLine(posX(x),posY(y),posX(x2),posY(y2));
 	}
+
+    @Override
+    public void setRotation(double rot) {
+     }
+
+    @Override
+    public double getRotation() {
+        return 0.;
+    }
+
 }

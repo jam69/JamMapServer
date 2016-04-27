@@ -13,7 +13,7 @@ public class PaintFilter extends EntityFilter {
 		super(cond);
 		this.simbology=simb;
 	}
-	public boolean paint(Mapper m, Graphics2D g,Entity ent){
+	public boolean paint(IMapper m, Graphics2D g,Entity ent){
 		    boolean b=checkCond(ent);
 		    if(b)simbology.paint(m, g, ent);
 		    return b;

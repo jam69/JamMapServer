@@ -6,7 +6,7 @@ package com.jrsolutions.mapserver.index.btree;
  *
  *  B-tree.
  *
- * Copyright © 2002–2010, Robert Sedgewick and Kevin Wayne. 
+ * Copyright ? 2002?2010, Robert Sedgewick and Kevin Wayne. 
  * 
  *  Limitations
  *  -----------

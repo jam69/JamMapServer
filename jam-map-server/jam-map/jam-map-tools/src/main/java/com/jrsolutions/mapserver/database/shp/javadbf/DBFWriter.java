@@ -1,6 +1,6 @@
 /**
- * <p>Title: java访问DBF文件的接口</p>
- * <p>Description: 这个类用于表示DBF文件中的写操作</p>
+ * <p>Title: java路脙脦脢DBF脦脛录镁碌脛陆脫驴脷</p>
+ * <p>Description: 脮芒赂枚脌脿脫脙脫脷卤铆脢戮DBF脦脛录镁脰脨碌脛脨麓虏脵脳梅</p>
  * <p>Copyright: Copyright (c) 2004</p>
  * <p>Company: ict</p>
  * @author : He Xiong
@@ -19,8 +19,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 
 /**
- * <p>Title: java访问DBF文件的接口</p>
- * <p>Description: 这个类用于表示DBF文件中的写操作</p>
+ * <p>Title: java路脙脦脢DBF脦脛录镁碌脛陆脫驴脷</p>
+ * <p>Description: 脮芒赂枚脌脿脫脙脫脷卤铆脢戮DBF脦脛录镁脰脨碌脛脨麓虏脵脳梅</p>
  * <p>Copyright: Copyright (c) 2004</p>
  * <p>Company: ict</p>
  * @author : He Xiong
@@ -28,10 +28,10 @@ import java.util.Calendar;
  */
 public class DBFWriter {
   /**
-   * 构造DBFWriter
-   * @param s 文件名
-   * @param ajdbfield 字段列表
-   * @throws JDBFException 写文件出错时抛出异常
+   * 鹿鹿脭矛DBFWriter
+   * @param s 脦脛录镁脙没
+   * @param ajdbfield 脳脰露脦脕脨卤铆
+   * @throws JDBFException 脨麓脦脛录镁鲁枚麓铆脢卤脜脳鲁枚脪矛鲁拢
    */
   public DBFWriter(String s, JDBField ajdbfield[]) throws JDBFException {
     stream = null;
@@ -48,10 +48,10 @@ public class DBFWriter {
     }
   }
   /**
-   * 构造函数
-   * @param outputstream 输出流
-   * @param ajdbfield 字段列表
-   * @throws JDBFException 写文件出错时抛出异常
+   * 鹿鹿脭矛潞炉脢媒
+   * @param outputstream 脢盲鲁枚脕梅
+   * @param ajdbfield 脳脰露脦脕脨卤铆
+   * @throws JDBFException 脨麓脦脛录镁鲁枚麓铆脢卤脜脳鲁枚脪矛鲁拢
    */
   public DBFWriter(OutputStream outputstream, JDBField ajdbfield[]) throws
       JDBFException {
@@ -63,10 +63,10 @@ public class DBFWriter {
     init(outputstream, ajdbfield);
   }
   /**
-   * 构造函数
-   * @param s 文件名
-   * @param ajdbfield 字段列表
-   * @param s1 字符集编码类型
+   * 鹿鹿脭矛潞炉脢媒
+   * @param s 脦脛录镁脙没
+   * @param ajdbfield 脳脰露脦脕脨卤铆
+   * @param s1 脳脰路没录炉卤脿脗毛脌脿脨脥
    * @throws JDBFException
    * @see init
    */
@@ -88,10 +88,10 @@ public class DBFWriter {
   }
 
   /**
-   * 初始化写操作
-   * @param outputstream 输出流
-   * @param ajdbfield 字段列表
-   * @throws JDBFException 写操作失败时抛出
+   * 鲁玫脢录禄炉脨麓虏脵脳梅
+   * @param outputstream 脢盲鲁枚脕梅
+   * @param ajdbfield 脳脰露脦脕脨卤铆
+   * @throws JDBFException 脨麓虏脵脳梅脢搂掳脺脢卤脜脳鲁枚
    */
   private void init(OutputStream outputstream, JDBField ajdbfield[]) throws
       JDBFException {
@@ -112,7 +112,7 @@ public class DBFWriter {
   }
 
   /**
-   * 写dbf文件头
+   * 脨麓dbf脦脛录镁脥路
    * @throws IOException
    */
   private void writeHeader() throws IOException {
@@ -149,9 +149,9 @@ public class DBFWriter {
   }
 
   /**
-   * 写一个字段的元信息
-   * @param jdbfield 字段内容
-   * @throws IOException 写失败时抛出
+   * 脨麓脪禄赂枚脳脰露脦碌脛脭陋脨脜脧垄
+   * @param jdbfield 脳脰露脦脛脷脠脻
+   * @throws IOException 脨麓脢搂掳脺脢卤脜脳鲁枚
    */
   private void writeFieldHeader(JDBField jdbfield) throws IOException {
     byte abyte0[] = new byte[16];
@@ -184,9 +184,9 @@ public class DBFWriter {
   }
 
   /**
-   * 写一条记录
-   * @param aobj 以Object表示的记录值
-   * @throws JDBFException 写操作失败时抛出,如果编码类型不支持，也抛出异常
+   * 脨麓脪禄脤玫录脟脗录
+   * @param aobj 脪脭Object卤铆脢戮碌脛录脟脗录脰碌
+   * @throws JDBFException 脨麓虏脵脳梅脢搂掳脺脢卤脜脳鲁枚,脠莽鹿没卤脿脗毛脌脿脨脥虏禄脰搂鲁脰拢卢脪虏脜脳鲁枚脪矛鲁拢
    */
   public void addRecord(Object aobj[]) throws JDBFException {
     if (aobj.length != fields.length) {
@@ -233,8 +233,8 @@ public class DBFWriter {
     recCount++;
   }
   /**
-   * 关闭文件写操作
-   * @throws JDBFException 出现IO异常时抛出
+   * 鹿脴卤脮脦脛录镁脨麓虏脵脳梅
+   * @throws JDBFException 鲁枚脧脰IO脪矛鲁拢脢卤脜脳鲁枚
    */
   public void close() throws JDBFException {
     try {
@@ -256,23 +256,23 @@ public class DBFWriter {
   }
 
   /**
-   * 输出流
+   * 脢盲鲁枚脕梅
    */
   private BufferedOutputStream stream;
   /**
-   * 记录个数
+   * 录脟脗录赂枚脢媒
    */
   private int recCount;
   /**
-   * 字段列表
+   * 脳脰露脦脕脨卤铆
    */
   private JDBField fields[];
   /**
-   * 文件名
+   * 脦脛录镁脙没
    */
   private String fileName;
   /**
-   * dbf文件的编码类型
+   * dbf脦脛录镁碌脛卤脿脗毛脌脿脨脥
    */
   private String dbfEncoding;
 }

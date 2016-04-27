@@ -29,16 +29,17 @@ public class NodoSimb extends NodeSimbology {
 	}
 	
 	@Override
-	public void paint(Mapper m, Graphics2D g,Point p,double angle, Entity ent) {
+	public void paint(IMapper m, Graphics2D g,Point p,double angle, Entity ent) {
 		// TODO
 		paint(m,g,p,ent);
 	}
 	
 	@Override
-	public void paint(Mapper m, Graphics2D g,Point p, Entity ent) {
+	public void paint(IMapper m, Graphics2D g,Point p, Entity ent) {
 		
-		int px= m.posX(p.getX());
-		int py= m.posY(p.getY());
+                int pp[]=m.pos(p.getX(),p.getY());
+		int px= pp[0];
+		int py= pp[1];
 		g.setColor(color);
 			int  s2=size/2;
 			switch(id){

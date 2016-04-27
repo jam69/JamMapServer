@@ -60,11 +60,12 @@ public class NodeIcon extends NodeSimbology {
 	}
 	
 	@Override
-	public void paint(Mapper m, Graphics2D g, Point p, Entity ent) {
+	public void paint(IMapper m, Graphics2D g, Point p, Entity ent) {
 		if(m.getZoomLevel()<zmin)return;
 		if(image==null)return;
-		int px=m.posX(p.getX());
-		int py=m.posY(p.getY());
+		int pp[]=m.pos(p.getX(),p.getY());
+                int px=pp[0];
+                int py=pp[1];        
 		int tx=px;
 		int ty=py;
 		switch(align){
@@ -109,7 +110,7 @@ public class NodeIcon extends NodeSimbology {
 	}
 
 	@Override
-	public void paint(Mapper m, Graphics2D g, Point p, double angle, Entity ent) {
+	public void paint(IMapper m, Graphics2D g, Point p, double angle, Entity ent) {
 		paint(m,g,p,ent);
 	}
 
