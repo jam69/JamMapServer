@@ -1,5 +1,6 @@
 package com.jrsolutions.mapserver.servlet;
 
+import com.jrsolutions.mapserver.render.Mapa;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -18,24 +19,24 @@ public class ImageGen {
 	static MyCache cache;
 
 	
-static {
+ static {
 	
-	int strategy=0;
-	String v=System.getProperty(CACHE_STRATEGY);
-	if(v==null){
-		strategy=2;
-	}else{
-		if(v.equalsIgnoreCase("none")) strategy=0;
-		else if (v.equalsIgnoreCase("local"))strategy=1;
-		else if (v.equalsIgnoreCase("ehcache")) strategy=2;
-	}
+ 	int strategy=0;
+ 	String v=System.getProperty(CACHE_STRATEGY);
+ 	if(v==null){
+ 		strategy=2;
+ 	}else{
+ 		if(v.equalsIgnoreCase("none")) strategy=0;
+ 		else if (v.equalsIgnoreCase("local"))strategy=1;
+ 		else if (v.equalsIgnoreCase("ehcache")) strategy=2;
+ 	}
 	
-	switch(strategy){
-	case 0: cache=null; break;
-	case 1: cache=  new MyLocalCache(); break;
-	case 2: cache=  new MyEhCache(); break;
-	}
-}
+ 	switch(strategy){
+ 	case 0: cache=null; break;
+ 	case 1: cache=  new MyLocalCache(); break;
+ 	case 2: cache=  new MyEhCache(); break;
+ 	}
+ }
 	
 	
 	private static Mapa mapa=new Mapa("algo");
