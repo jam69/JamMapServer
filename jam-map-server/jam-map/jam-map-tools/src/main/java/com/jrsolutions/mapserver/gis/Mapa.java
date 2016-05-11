@@ -1,4 +1,4 @@
-package com.jrsolutions.mapserver.render;
+package com.jrsolutions.mapserver.gis;
 
 import java.awt.Graphics2D;
 import java.io.IOException;
@@ -15,7 +15,6 @@ import com.jrsolutions.mapserver.MapUtil;
 import com.jrsolutions.mapserver.database.DataRepos;
 import com.jrsolutions.mapserver.geometry.Rect;
 import com.jrsolutions.mapserver.render.GeomLayer;
-import com.jrsolutions.mapserver.render.Mapper;
 
 public class Mapa {
 
@@ -29,7 +28,7 @@ public class Mapa {
 		jsEngine.put("mapa", this);
 		jsEngine.put("xxxx", new MapUtil());
 		try {
-			Reader reader=new InputStreamReader(this.getClass().getResourceAsStream("/startup.js"));
+			Reader reader=new InputStreamReader(this.getClass().getResourceAsStream("/startup_tiles.js"));
 			jsEngine.eval(reader);
 		} catch (ScriptException ex) {
 			ex.printStackTrace();

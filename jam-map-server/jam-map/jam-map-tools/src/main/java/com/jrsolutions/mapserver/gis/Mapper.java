@@ -6,7 +6,7 @@
  * $Source: /export2/env/ssf/rep/onis/java/src3/core/com/soluzionasf/onis/oniscanvas/Zoomer.java,v $
  *
  *------------------------------------------------------------------*/
-package com.jrsolutions.mapserver.render;
+package com.jrsolutions.mapserver.gis;
 
 import java.awt.Graphics;
 import java.awt.Shape;
@@ -66,7 +66,13 @@ public class Mapper  implements IMapper {
 		this.alto=alto;
 //		adaptarCoord();
 	}
-	
+        
+        public int getWidth(){
+            return ancho;
+        }
+	 public int getHeight(){
+            return alto;
+        }
 	/**
          * Le mandamos una nuevas coordenadas de zoom.
          * Las coordenadas se ajustan a la relacion de aspecto de la ventana.
@@ -199,18 +205,18 @@ public class Mapper  implements IMapper {
 		return posY(Y);
 	}
 	
-	public Shape mapLine(LineString line){
-		GeneralPath res=new GeneralPath(GeneralPath.WIND_EVEN_ODD,line.getNumPoints());
-		Point p=line.getPoint(0);
-		// res.moveTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
-		res.moveTo( posX(p.getX()),posY(p.getY()));
-		for(int i=1;i<line.getNumPoints();i++){
-			p=line.getPoint(i);
-			// res.lineTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
-			res.lineTo( posX(p.getX()),posY(p.getY()));
-		}
-		return res;
-	}
+//	public Shape mapLine(LineString line){
+//		GeneralPath res=new GeneralPath(GeneralPath.WIND_EVEN_ODD,line.getNumPoints());
+//		Point p=line.getPoint(0);
+//		// res.moveTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+//		res.moveTo( posX(p.getX()),posY(p.getY()));
+//		for(int i=1;i<line.getNumPoints();i++){
+//			p=line.getPoint(i);
+//			// res.lineTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+//			res.lineTo( posX(p.getX()),posY(p.getY()));
+//		}
+//		return res;
+//	}
 	
 
 	/**

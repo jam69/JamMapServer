@@ -15,7 +15,7 @@ import java.awt.geom.GeneralPath;
 import com.jrsolutions.mapserver.geometry.LineString;
 import com.jrsolutions.mapserver.geometry.Point;
 import com.jrsolutions.mapserver.geometry.Rect;
-import com.jrsolutions.mapserver.render.IMapper3D;
+import com.jrsolutions.mapserver.gis.IMapper3D;
 
 
 /**
@@ -45,7 +45,7 @@ public class PerspectiveMapper implements IMapper3D  {
   
     @Override
 	public int getZoomLevel(){
-		return zoomLevel;
+		return 7;//zoomLevel;
 	}
 	
 	public PerspectiveMapper() {
@@ -74,6 +74,12 @@ public class PerspectiveMapper implements IMapper3D  {
 //		adaptarCoord();
 	}
 	
+                public int getWidth(){
+            return ancho;
+        }
+	 public int getHeight(){
+            return alto;
+        }
 	/**
          * Le mandamos una nuevas coordenadas de zoom.
          * Las coordenadas se ajustan a la relacion de aspecto de la ventana.
@@ -84,7 +90,7 @@ public class PerspectiveMapper implements IMapper3D  {
     @Override
 	public void zoom(Rect rec) {
 		r=new Rect(rec);
-		//adaptarCoord();
+		adaptarCoord();
 	}
 	
 	/**
@@ -203,7 +209,7 @@ public class PerspectiveMapper implements IMapper3D  {
     float ffy=1f;
     float ffx=.5f;
 
-  	public int[] pos(double cx, double cy){
+  	public int[] posAA(double cx, double cy){
         System.out.print("Entra:("+cx+","+cy+")");
         int[] ret=new int[2];
         ret[1]  =(int)(Math.round((r.getYMax()-cy*ffy)*alto*ffy/(r.getYMax()-r.getYMin())));
@@ -216,12 +222,12 @@ public class PerspectiveMapper implements IMapper3D  {
         return ret;
 	}
 
-    private int[] pos2(double cx, double cy){
-         System.out.print("Entra:("+cx+","+cy+")");
+    public int[] pos(double cx, double cy){
+ //        System.out.print("Entra:("+cx+","+cy+")");
          int[] ret=new int[2];
          ret[1]  =(int)(Math.round((r.getYMax()-cy)*alto/(r.getYMax()-r.getYMin())));
          ret[0] = (int)Math.round((cx-r.getXMin())*ancho/(r.getXMax()-r.getXMin()));
-		 System.out.println(" Sale:("+ret[0]+","+ret[1]+")");
+//		 System.out.println(" Sale:("+ret[0]+","+ret[1]+")");
          return ret;
 	}
 
@@ -256,19 +262,19 @@ public class PerspectiveMapper implements IMapper3D  {
 
     
   
-    @Override
-	public Shape mapLine(LineString line){
-		GeneralPath res=new GeneralPath(GeneralPath.WIND_EVEN_ODD,line.getNumPoints());
-		Point p=line.getPoint(0);
-		// res.moveTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
-		res.moveTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
-		for(int i=1;i<line.getNumPoints();i++){
-			p=line.getPoint(i);
-			// res.lineTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
-			res.lineTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
-		}
-		return res;
-	}
+//    @Override
+//	public Shape mapLine(LineString line){
+//		GeneralPath res=new GeneralPath(GeneralPath.WIND_EVEN_ODD,line.getNumPoints());
+//		Point p=line.getPoint(0);
+//		// res.moveTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+//		res.moveTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+//		for(int i=1;i<line.getNumPoints();i++){
+//			p=line.getPoint(i);
+//			// res.lineTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+//			res.lineTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+//		}
+//		return res;
+//	}
 	
 
 	/**
@@ -300,10 +306,10 @@ public class PerspectiveMapper implements IMapper3D  {
 	}
 
    
-    @Override
-	public void drawLine(double x, double y, double x2, double y2, Graphics g) {
-		g.drawLine(posX(x,y),posY(x,y),posX(x2,y2),posY(x2,y2));
-	}
+//    @Override
+//	public void drawLine(double x, double y, double x2, double y2, Graphics g) {
+//		g.drawLine(posX(x,y),posY(x,y),posX(x2,y2),posY(x2,y2));
+//	}
 //
 //    int SX=600;
 //    int SY=400;

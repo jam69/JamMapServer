@@ -5,11 +5,10 @@ importPackage(com.jrsolutions.mapserver.render);
 
 
          var dbURL="jdbc:mysql://localhost:3306/mapas?user=root&password=root";
+        // var iconPath="/data/map-icons/icons/";
          var iconPath="/Users/joseantoniomartin/Documents/projects/JamMapServer/data/icons/";
 
- //        var Simbology = Java.type('com.jrsolutions.mapserver.render.Symbology');
- //        var LineColor = Java.type('com.jrsolutions.mapserver.render.LineColor');
-              
+         
         function createSymb(a,b,c){
         	var simb= xxxx.createSymbology()
                           .addLineColor(b)
@@ -18,9 +17,9 @@ importPackage(com.jrsolutions.mapserver.render);
         	return simb;
         } 
    	 
- //       var s=(new Simbology()).addLineColor(0xaaaaaa); 
+        var s=(new Simbology()).addLineColor(0xaaaaaa); 
         
- /*       var greenLine  = (new Simbology()).addLineColor(0x00FF00);
+        var greenLine  = (new Simbology()).addLineColor(0x00FF00);
         var redLine    = (new Simbology())
         						.addLinePrim(new LineColor(0xFF0000,8))
         						.addLinePrim(new LineParal(4, new LineColor(0xffffff)))
@@ -44,8 +43,8 @@ importPackage(com.jrsolutions.mapserver.render);
         		.addMidPointText(0, 0,0xffff00,"type",15,13,"","S")
         		.addSurfNodeText(0, 0,0xffffff,"name",15,13,"","N")
         		.addSurfNodeText(0, 0,0xcccccc,"type",15,13,"","S");
-*/        		
-        var simb=createSymb(0xaa66aa,0xcccccc,0x00ff00);
+        		
+        var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
 
          var dataRepos = xxxx.createMySQLRepos(dbURL,"naturales");
          var geomLayer = mapa.createGeomLayer(dataRepos);
@@ -53,34 +52,24 @@ importPackage(com.jrsolutions.mapserver.render);
          geomLayer.setDefault(simb);
 
 
- /*        var dataRepos = xxxx.createMySQLRepos(dbURL,"landuse");
+         var dataRepos = xxxx.createMySQLRepos(dbURL,"landuse");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(8,19);
          geomLayer.setDefault(createSymb(0xaa00aa,0xcccccc,0xccffff));
-*/
-		 
-        var dataRepos = xxxx.createMySQLRepos(dbURL,"buildings");
+
+		var dataRepos = xxxx.createMySQLRepos(dbURL,"buildings");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(13,19);
          geomLayer.setDefault(createSymb(0xaa00aa,0xcccccc,0xffcc99)
         		 .addSurfNodeText(0 , 0,0xffffff,"name",15,13,"","N")
         		 .addSurfNodeText(0 , 0,0xffffff,"type",15,13,"","S")
-        		//     .addSurfContour( new LineColor(0x880088))
+        		 .addSurfContour( new LineColor(0x880088))
        		   );
-         
-
-
 
          var dataRepos = xxxx.createMySQLRepos(dbURL,"roads");
-         var geomLayer = mapa.createGeomLayer(dataRepos);
-         geomLayer.setZoomLimits(11,19);
-         var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
-         geomLayer.setDefault(simb);
-
- /*        var dataRepos = xxxx.createMySQLRepos(dbURL,"roads");
          var geomLayer = mapa.createGeomLayer(dataRepos)
          		.setZoomLimits(11,19)
-        		.where("type","trunk",redLine)
+         		.where("type","trunk",redLine)
          		.where("type","motorway",redLine)
          		.where("type","motorway_link",redLine)
          		.where("type","tertiary",blueLine)
@@ -93,13 +82,12 @@ importPackage(com.jrsolutions.mapserver.render);
          		.where("type","primary",grayLine) 
          		.where("type","service",whiteLine) 
          		.where("type","unclassified",pinkLine) 
-         		.setDefault(TxtTypeName)
-                ;  */
+         		.setDefault(TxtTypeName);
 
          var dataRepos = xxxx.createMySQLRepos(dbURL,"railways");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(11,19);
-         var simb=createSymb(0xaa00aa,0x0000ff,0xffaaaa);
+         var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
          
          geomLayer.setDefault(simb);
 
@@ -113,15 +101,15 @@ importPackage(com.jrsolutions.mapserver.render);
          		   //.addNodeIcon(iconPath+"agriculture.png",17,"N");
          geomLayer.setDefault(simb);
          
-         geomLayer.where("type","subway_entrance",iconPath+"underground.png",17,"N");
+         geomLayer.where("type","subway_entrance",iconPath+"subway.png",17,"N");
          geomLayer.where("type","bus_stop",iconPath+"bus.png",17,"N");
          geomLayer.where("type","taxi",iconPath+"taxi.png",17,"N");
          geomLayer.where("type","station","",17,"N");
          
-         geomLayer.where("type","place_of_worship",iconPath+"church-2.png",17,"N"); //church2, chapel
+         geomLayer.where("type","place_of_worship",iconPath+"church.png",17,"N"); //church2, chapel
          geomLayer.where("type","school",iconPath+"school.png",17,"N");
          geomLayer.where("type","hospital",iconPath+"hospital.png",17,"N");
-         geomLayer.where("type","pharmacy",iconPath+"drugstore.png",17,"N");
+         geomLayer.where("type","pharmacy",iconPath+"drugs.png",17,"N");
          geomLayer.where("type","nursing_home","",17,"N");
          geomLayer.where("type","recycling",iconPath+"recycle.png",17,"N");
          geomLayer.where("type","kindergarten",iconPath+"nursery.png",17,"N");
@@ -136,7 +124,7 @@ importPackage(com.jrsolutions.mapserver.render);
          geomLayer.where("type","camp_site",iconPath+"camping.png",17,"N");
          
          geomLayer.where("type","drinking_water",iconPath+"drinkingwater.png",17,"N");  //fountain
-         geomLayer.where("type","fountain.png",iconPath+"drinkingfountain.png",17,"N");
+         geomLayer.where("type","fountain.png",iconPath+"fountain.png",17,"N");
          geomLayer.where("type","post_box","",17,"N");      
          geomLayer.where("type","telephone",iconPath+"telephone.png",17,"N");
          geomLayer.where("type","embassy",iconPath+"embassy.png",17,"N");
@@ -148,12 +136,10 @@ importPackage(com.jrsolutions.mapserver.render);
          geomLayer.where("type","measurement_stat","",17,"N");
          geomLayer.where("type","level_crossing","",17,"N");
          
-         geomLayer.where("type","supermarket",iconPath+"supermarket.png",17,"N");
          geomLayer.where("type","cafe",iconPath+"coffee.png",17,"N");
          geomLayer.where("type","restaurant",iconPath+"restaurant.png",17,"N");
          geomLayer.where("type","pub","",17,"N");
-         geomLayer.where("type","bar","bar.png",17,"N");
-         geomLayer.where("type","fast_food","fastfood.png",17,"N");
+         geomLayer.where("type","fast_food","",17,"N");
          
          geomLayer.where("type","crossing",iconPath+"cross.png",17,"N");
          geomLayer.where("type","mini_roundabout","",17,"N");
@@ -161,16 +147,15 @@ importPackage(com.jrsolutions.mapserver.render);
          geomLayer.where("type","fuel",iconPath+"gazstation.png",17,"N");
          geomLayer.where("type","speed_camera",iconPath+"photodown.png",17,"N");
          geomLayer.where("type","parking",iconPath+"parking.png",17,"N");
-         geomLayer.where("type","bicycle_parking",iconPath+"bicycle_shop.png",17,"N");
+         geomLayer.where("type","bicycle_parking",iconPath+"bicycleparking.png",17,"N");
          geomLayer.where("type","survey_point","",17,"N");
          geomLayer.where("type","stop",iconPath+"stop.png",17,"N");
          geomLayer.where("type","traffic_signals","",17,"N");
          geomLayer.where("type","turning_cirle","",17,"N");
          geomLayer.where("type","halt","",17,"N");
          geomLayer.where("type","give_way","",17,"N");
-
-
-   /*         
+              
+         
         var dataRepos = xxxx.createMySQLRepos(dbURL,"places");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(13,19);
@@ -179,7 +164,7 @@ importPackage(com.jrsolutions.mapserver.render);
                        .addNodeText(0 ,0,0x00ff00,"name",15,10,"","N")
                        .addNodeText(0 ,0,0xcc0000,"type",15,10,"","S");
          geomLayer.setDefault(simb2);
-*/
+
          
 /*		 
 		 painter.where("TYPE","residential",green);

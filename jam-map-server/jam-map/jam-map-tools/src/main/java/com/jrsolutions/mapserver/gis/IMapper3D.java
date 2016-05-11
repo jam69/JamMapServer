@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jrsolutions.mapserver.render;
+package com.jrsolutions.mapserver.gis;
 
 /**
  *

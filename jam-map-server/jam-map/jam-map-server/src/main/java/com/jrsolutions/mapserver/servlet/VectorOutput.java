@@ -1,6 +1,6 @@
 package com.jrsolutions.mapserver.servlet;
 
-import com.jrsolutions.mapserver.render.Mapa;
+import com.jrsolutions.mapserver.gis.Mapa;
 import java.io.IOException;
 
 import javax.servlet.ServletOutputStream;

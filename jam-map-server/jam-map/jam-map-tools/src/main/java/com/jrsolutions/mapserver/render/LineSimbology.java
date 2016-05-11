@@ -1,5 +1,6 @@
 package com.jrsolutions.mapserver.render;
 
+import com.jrsolutions.mapserver.gis.IMapper;
 import java.awt.Graphics2D;
 
 import com.jrsolutions.mapserver.database.Entity;

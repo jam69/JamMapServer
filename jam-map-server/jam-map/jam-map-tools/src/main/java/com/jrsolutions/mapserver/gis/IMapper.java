@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jrsolutions.mapserver.render;
+package com.jrsolutions.mapserver.gis;
 
-import com.jrsolutions.mapserver.geometry.LineString;
 import com.jrsolutions.mapserver.geometry.Rect;
-import java.awt.Graphics;
-import java.awt.Shape;
 
 /**
  *
@@ -16,7 +13,7 @@ import java.awt.Shape;
  */
 public interface IMapper {
 
-    void drawLine(double x, double y, double x2, double y2, Graphics g);
+   // void drawLine(double x, double y, double x2, double y2, Graphics g);
  
 
     /**
@@ -27,7 +24,7 @@ public interface IMapper {
 
     int getZoomLevel();
 
-    Shape mapLine(LineString line);
+    //Shape mapLine(LineString line);
 
     int[] pos(double X, double Y);
 
@@ -41,6 +38,9 @@ public interface IMapper {
      * @param alto  Alto  en unidades(pixels) de la ventana.
      */
     void setSize(int ancho, int alto);
+    
+    public int getWidth();
+    public int getHeight();
 
     void setZoomLevel(int z);
 

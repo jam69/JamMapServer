@@ -15,8 +15,12 @@ import java.awt.geom.GeneralPath;
 import com.jrsolutions.mapserver.geometry.LineString;
 import com.jrsolutions.mapserver.geometry.Point;
 import com.jrsolutions.mapserver.geometry.Rect;
-import com.jrsolutions.mapserver.render.IMapper3D;
+import com.jrsolutions.mapserver.gis.IMapper3D;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.media.jai.PerspectiveTransform;
 
 
@@ -45,7 +49,7 @@ public class Transform3DMapper implements IMapper3D {
 	}
     @Override
 	public int getZoomLevel(){
-		return zoomLevel;
+		return 14;//zoomLevel;
 	}
 
     public void setRotation(double rot){
@@ -78,6 +82,12 @@ public class Transform3DMapper implements IMapper3D {
             adjust();
         }
 	}
+                public int getWidth(){
+            return ancho;
+        }
+	 public int getHeight(){
+            return alto;
+        }
 	
 	/**
          * Le mandamos una nuevas coordenadas de zoom.
@@ -88,7 +98,7 @@ public class Transform3DMapper implements IMapper3D {
     @Override
 	public void zoom(Rect rec) {
 		r=new Rect(rec);
-		//adaptarCoord();
+		adaptarCoord();
         adjust();
 	}
 
@@ -116,31 +126,90 @@ public class Transform3DMapper implements IMapper3D {
 	}
 
 
-    private final PerspectiveTransform tr =new PerspectiveTransform();
+    //private final PerspectiveTransform tr =new PerspectiveTransform();
+    private final AffineTransform tr =new AffineTransform();
+    private PerspectiveTransform pt;
 
+    
     private void adjust(){
         tr.setToIdentity();
-     //   tr.translate(ancho/2,alto/2);
-     //   tr.rotate(Math.toRadians(rotation));
-     //   tr.translate(-ancho/2,-alto/2);
+//        tr.translate(ancho/2,alto/2);
+//        tr.rotate(Math.toRadians(rotation));
+//        tr.translate(-ancho/2,-alto/2);
+        tr.scale(1,-1);
+        tr.translate(0,-alto);
         double a=ancho/(r.getXMax()-r.getXMin());
         double b=alto/ (r.getYMax()-r.getYMin());
         tr.scale(a,b);
         tr.translate(-r.getXMin(), -r.getYMin());
         System.out.println(" tr="+tr);
+        PerspectiveTransform tt=new PerspectiveTransform(tr);
+        System.out.println(" pt="+tt);
+        PerspectiveTransform pr=gira(rotation);
+        //tt.preConcatenate(pr);
+        System.out.println(" pt2="+tt);
+        pt=pr;
     }
 
     public int[] pos(double cx, double cy){
-        System.out.print("Entra:("+cx+","+cy+")");
+   //     System.out.print("Entra:("+cx+","+cy+")");
+       
         Point2D p1=new Point2D.Double(cx,cy);
         Point2D p2=tr.transform(p1,null);
-        int[] ret=new int[2];
-        ret[0]=(int)p2.getX();
-        ret[1]=(int)p2.getY();
-        System.out.println(" Sale:("+ret[0]+","+ret[1]+")");
+        
+       // System.out.println("PT:"+pt);
+
+    //    System.out.println("Point2D:"+p2);
+        Point2D p3=pt.transform(p2,null);
+        
+        
+//        double[][]m=pt.getMatrix((double[][])null);
+//        double x=m[0][0]*cx+m[0][1]*cy+m[0][2];
+//        double y=m[1][0]*cx+m[1][1]*cy+m[1][2];
+//        double w=m[2][0]*cx+m[2][1]*cy+m[2][2];
+//        double xx=x/w;
+//        double yy=y/w;
+        
+        
+            int[] ret=new int[2];
+        ret[0]=(int)p3.getX();
+        ret[1]=(int)p3.getY();    
+     //    System.out.println("Point2D--:"+p3);
+     //   System.out.println(" Sale:("+ret[0]+","+ret[1]+")");
         return ret;
     }
 
+    PerspectiveTransform gira(double rotation){
+        double a=Math.toRadians(rotation);
+//        PerspectiveTransform pt=new PerspectiveTransform(
+//                1.,  0.,  0.,
+//                0., Math.cos(a),  -Math.sin(a),
+//                0., Math.sin(a),  Math.cos(a)
+//        );
+        pt=PerspectiveTransform.getQuadToQuad(
+                0, alto, 
+                0, 0, 
+                ancho, 0, 
+                ancho, alto, 
+                
+                0, alto, 
+                80, 100, 
+                ancho-80, 100,
+                ancho,alto
+                );
+        System.out.println(" gira="+pt);
+        test(0,0);
+        test(0,alto);
+        test(ancho,alto);
+        test(ancho,0);
+    
+            return pt;
+    }
+    
+    private void test(int x,int y){
+        Point2D k=new Point2D.Double(x,y);
+        System.out.println("("+x+","+y+")->("+pt.transform(k,null));
+    }
     public int[] pos(double X, double Y,double Z){
        return pos(X,Y);
 	}
@@ -166,19 +235,19 @@ public class Transform3DMapper implements IMapper3D {
     }
 
     
-    @Override
-	public Shape mapLine(LineString line){
-		GeneralPath res=new GeneralPath(GeneralPath.WIND_EVEN_ODD,line.getNumPoints());
-		Point p=line.getPoint(0);
-		// res.moveTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
-		res.moveTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
-		for(int i=1;i<line.getNumPoints();i++){
-			p=line.getPoint(i);
-			// res.lineTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
-			res.lineTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
-		}
-		return res;
-	}
+//    @Override
+//	public Shape mapLine(LineString line){
+//		GeneralPath res=new GeneralPath(GeneralPath.WIND_EVEN_ODD,line.getNumPoints());
+//		Point p=line.getPoint(0);
+//		// res.moveTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+//		res.moveTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+//		for(int i=1;i<line.getNumPoints();i++){
+//			p=line.getPoint(i);
+//			// res.lineTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+//			res.lineTo( posX(p.getX(),p.getY()),posY(p.getX(),p.getY()));
+//		}
+//		return res;
+//	}
 	
 
 	/**
@@ -209,10 +278,10 @@ public class Transform3DMapper implements IMapper3D {
 		r.setYMax(yCentroR+rmy);
 	}
 
-    @Override
-	public void drawLine(double x, double y, double x2, double y2, Graphics g) {
-		g.drawLine(posX(x,y),posY(x,y),posX(x2,y2),posY(x2,y2));
-	}
+//    @Override
+//	public void drawLine(double x, double y, double x2, double y2, Graphics g) {
+//		g.drawLine(posX(x,y),posY(x,y),posX(x2,y2),posY(x2,y2));
+//	}
 //
 //    int SX=600;
 //    int SY=400;

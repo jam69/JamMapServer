@@ -1,12 +1,12 @@
 package com.jrsolutions.mapserver.render;
 
+import com.jrsolutions.mapserver.gis.IMapper;
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.geom.GeneralPath;
 
 import com.jrsolutions.mapserver.database.Entity;
 import com.jrsolutions.mapserver.geometry.LineString;
-import com.jrsolutions.mapserver.geometry.Point;
+import com.jrsolutions.mapserver.gis.MapperUtils;
 
 public class LineParal extends LineSimbology{
 
@@ -21,10 +21,8 @@ public class LineParal extends LineSimbology{
 	@Override
 	public void paint(IMapper mapper, Graphics2D g, LineString line, Entity ent,boolean closed) {
 	
-		Shape r=mapper.mapLine(line);
-		
-//		
-//		 
+		Shape r=MapperUtils.mapLine(mapper,line);
+		 
 //		LineString paral=line.creaParal(d); // TODO
 	    lineSimb.paint(mapper, g, line, ent,closed);
 //	    
