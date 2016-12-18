@@ -9,11 +9,9 @@ import com.jrsolutions.mapserver.geometry.Rect;
 
 public class CollectionRepos implements DataRepos {
 
-	private final Rect env=new Rect();
-	private final List<Entity> world=new ArrayList<Entity>();
-	
-	
-	
+	private final Rect env = new Rect();
+	private final List<Entity> world = new ArrayList<Entity>();
+
 	@Override
 	public Rect getEnvelope() {
 		return env;
@@ -30,32 +28,34 @@ public class CollectionRepos implements DataRepos {
 	}
 
 	@Override
-	public TableDescriptor getDescription(){
+	public TableDescriptor getDescription() {
 		// TODO
 		return null;
 	}
-	
+
 	@Override
-	public void create(TableDescriptor description){
-    	//TODO
-    }
-	
-	@Override
-	public void open(){
+	public void create(TableDescriptor description) {
 		// TODO
 	}
+
 	@Override
-	public void close(){
+	public void open() {
 		// TODO
 	}
+
 	@Override
-	public boolean save(Entity entity){
+	public void close() {
+		// TODO
+	}
+
+	@Override
+	public boolean save(Entity entity) {
 		// TODO
 		return false;
 	}
-        
-        public void add(Entity entity){
-            world.add(entity);
-        }
+
+	public void add(Entity entity) {
+		world.add(entity);
+	}
 
 }

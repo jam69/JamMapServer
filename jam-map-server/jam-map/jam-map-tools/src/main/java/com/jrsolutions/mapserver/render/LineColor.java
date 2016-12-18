@@ -1,6 +1,5 @@
 package com.jrsolutions.mapserver.render;
 
-import com.jrsolutions.mapserver.gis.IMapper;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -8,6 +7,7 @@ import java.awt.Stroke;
 
 import com.jrsolutions.mapserver.database.Entity;
 import com.jrsolutions.mapserver.geometry.LineString;
+import com.jrsolutions.mapserver.gis.IMapper;
 import com.jrsolutions.mapserver.gis.MapperUtils;
 
 public class LineColor extends LineSimbology {

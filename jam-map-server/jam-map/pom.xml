@@ -64,6 +64,10 @@
     	<developerConnection>scm:git@github.com:jam69/JamMapServer.git</developerConnection>
   </scm>
   
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <build>
     <pluginManagement>
     <plugins>
@@ -87,4 +91,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
 </project>

@@ -24,12 +24,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.jrsolutions.mapserver.index.FixedRecordFile;
+
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheException;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
-
-import com.jrsolutions.mapserver.index.FixedRecordFile;
 
 public class NodeStoreFile2<Node> implements NodeStore<Node> {
 

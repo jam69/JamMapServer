@@ -1,10 +1,7 @@
 package com.jrsolutions.mapserver.database.shp;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import com.jrsolutions.mapserver.database.DataRepos;
 import com.jrsolutions.mapserver.database.Entity;

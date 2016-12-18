@@ -5,10 +5,11 @@
  */
 package com.jrsolutions.mapserver.gis;
 
-import com.jrsolutions.mapserver.geometry.LineString;
-import com.jrsolutions.mapserver.geometry.Rect;
 import java.awt.Graphics;
 import java.awt.Shape;
+
+import com.jrsolutions.mapserver.geometry.LineString;
+import com.jrsolutions.mapserver.geometry.Rect;
 
 /**
  *

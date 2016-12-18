@@ -1,6 +1,5 @@
 package com.jrsolutions.mapserver.render;
 
-import com.jrsolutions.mapserver.gis.IMapper;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Iterator;
@@ -9,6 +8,7 @@ import com.jrsolutions.mapserver.database.Entity;
 import com.jrsolutions.mapserver.geometry.LineString;
 import com.jrsolutions.mapserver.geometry.Point;
 import com.jrsolutions.mapserver.geometry.Polygon;
+import com.jrsolutions.mapserver.gis.IMapper;
 
 public class SurfFillColor extends SurfaceSimbology{
 

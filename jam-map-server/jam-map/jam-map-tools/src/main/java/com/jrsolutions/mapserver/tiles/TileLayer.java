@@ -5,9 +5,11 @@
  */
 package com.jrsolutions.mapserver.tiles;
 
+import java.awt.Graphics2D;
+
 import com.jrsolutions.mapserver.gis.IMapper;
 import com.jrsolutions.mapserver.gis.Layer;
-import java.awt.Graphics2D;
+
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
 
@@ -21,6 +23,11 @@ public class TileLayer implements Layer {
     
     @Override
     public void render(IMapper m, Graphics2D g) {
+
+        int z=17;  // TOFIX
+        double lat=0;  //TOFIX
+        double lon=0; // TOFIX
+
         System.out.println("---R-e-p-i-n-t-a---");
         int w = m.getWidth();
         int h = m.getHeight();
@@ -50,11 +57,12 @@ public class TileLayer implements Layer {
                     System.out.println("-++++++++REPOS++++++++++++++++++++++++++++++++++++++++++++URL=" + key);
                 } else {
                     System.out.println("---------GET -------------------------------------------- URL=" + key);
-                    ImageGetter ig = new ImageGetter(key, dx1, dy1);
+                    ImageGetter ig = new ImageGetter(key, dx1, dy1,null);
                     if (ehCache != null) {
                         ehCache.put(new Element(key, ig));
                     }
-                    executor.execute(ig);
+                    //executor.execute(ig);
+                    ig.run(); // TOFIX
                 }
                 dy1 += 256;
             }
@@ -92,7 +100,8 @@ public class TileLayer implements Layer {
         double my = Math.log( Math.tan((90 + lat) * Math.PI / 360.0 )) / (Math.PI / 180.0);
 
         my = my * originShift / 180.0;
-        return mx, my;
+        return new double[]{mx,my};
+        //return mx, my;
     }
 
     double[] MetersToLatLon( double mx, double my ){
@@ -102,6 +111,7 @@ public class TileLayer implements Layer {
         double lat = (my / originShift) * 180.0;
 
         lat = 180 / Math.PI * (2 * Math.atan( Math.exp( lat * Math.PI / 180.0)) - Math.PI / 2.0);
-        return lat, lon
+        //return lat, lon
+        return new double[]{lat,lon};
     }
 }

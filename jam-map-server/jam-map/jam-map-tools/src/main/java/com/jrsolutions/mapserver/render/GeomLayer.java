@@ -1,6 +1,5 @@
 package com.jrsolutions.mapserver.render;
 
-import com.jrsolutions.mapserver.gis.IMapper;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,6 +13,7 @@ import com.jrsolutions.mapserver.database.DataRepos;
 import com.jrsolutions.mapserver.database.Entity;
 import com.jrsolutions.mapserver.geometry.Rect;
 import com.jrsolutions.mapserver.geometry.WKBWriter;
+import com.jrsolutions.mapserver.gis.IMapper;
 import com.jrsolutions.mapserver.gis.Layer;
 
 public class GeomLayer implements Layer {

@@ -10,13 +10,13 @@ package com.jrsolutions.mapserver.gis;
 
 import java.awt.Graphics;
 import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
+import java.awt.geom.Point2D;
 
 import com.jrsolutions.mapserver.geometry.LineString;
 import com.jrsolutions.mapserver.geometry.Point;
 import com.jrsolutions.mapserver.geometry.Rect;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
 
 
 

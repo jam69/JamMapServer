@@ -11,7 +11,7 @@ importPackage(com.jrsolutions.mapserver.render);
  //        var LineColor = Java.type('com.jrsolutions.mapserver.render.LineColor');
               
         function createSymb(a,b,c){
-        	var simb= xxxx.createSymbology()
+        	var simb= util.createSymbology()
                           .addLineColor(b)
                           .addNodeSymbol(1,a)
                           .addSurfaceColor(c);
@@ -47,19 +47,19 @@ importPackage(com.jrsolutions.mapserver.render);
 */        		
         var simb=createSymb(0xaa66aa,0xcccccc,0x00ff00);
 
-         var dataRepos = xxxx.createMySQLRepos(dbURL,"naturales");
+         var dataRepos = util.createMySQLRepos(dbURL,"naturales");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(7,19);
          geomLayer.setDefault(simb);
 
 
- /*        var dataRepos = xxxx.createMySQLRepos(dbURL,"landuse");
+ /*        var dataRepos = util.createMySQLRepos(dbURL,"landuse");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(8,19);
          geomLayer.setDefault(createSymb(0xaa00aa,0xcccccc,0xccffff));
 */
 		 
-        var dataRepos = xxxx.createMySQLRepos(dbURL,"buildings");
+        var dataRepos = util.createMySQLRepos(dbURL,"buildings");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(13,19);
          geomLayer.setDefault(createSymb(0xaa00aa,0xcccccc,0xffcc99)
@@ -71,13 +71,13 @@ importPackage(com.jrsolutions.mapserver.render);
 
 
 
-         var dataRepos = xxxx.createMySQLRepos(dbURL,"roads");
+         var dataRepos = util.createMySQLRepos(dbURL,"roads");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(11,19);
          var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa);
          geomLayer.setDefault(simb);
 
- /*        var dataRepos = xxxx.createMySQLRepos(dbURL,"roads");
+ /*        var dataRepos = util.createMySQLRepos(dbURL,"roads");
          var geomLayer = mapa.createGeomLayer(dataRepos)
          		.setZoomLimits(11,19)
         		.where("type","trunk",redLine)
@@ -96,7 +96,7 @@ importPackage(com.jrsolutions.mapserver.render);
          		.setDefault(TxtTypeName)
                 ;  */
 
-         var dataRepos = xxxx.createMySQLRepos(dbURL,"railways");
+         var dataRepos = util.createMySQLRepos(dbURL,"railways");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(11,19);
          var simb=createSymb(0xaa00aa,0x0000ff,0xffaaaa);
@@ -104,7 +104,7 @@ importPackage(com.jrsolutions.mapserver.render);
          geomLayer.setDefault(simb);
 
          
-         var dataRepos = xxxx.createMySQLRepos(dbURL,"points");
+         var dataRepos = util.createMySQLRepos(dbURL,"points");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(13,19);       
          var simb=createSymb(0xaa00aa,0xcccccc,0xffaaaa)
@@ -171,7 +171,7 @@ importPackage(com.jrsolutions.mapserver.render);
 
 
    /*         
-        var dataRepos = xxxx.createMySQLRepos(dbURL,"places");
+        var dataRepos = util.createMySQLRepos(dbURL,"places");
          var geomLayer = mapa.createGeomLayer(dataRepos);
          geomLayer.setZoomLimits(13,19);
          var simb2=createSymb(0xaa00aa,0xcccccc,0xccffcc)

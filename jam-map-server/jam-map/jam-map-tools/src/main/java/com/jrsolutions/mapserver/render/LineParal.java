@@ -1,11 +1,11 @@
 package com.jrsolutions.mapserver.render;
 
-import com.jrsolutions.mapserver.gis.IMapper;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 
 import com.jrsolutions.mapserver.database.Entity;
 import com.jrsolutions.mapserver.geometry.LineString;
+import com.jrsolutions.mapserver.gis.IMapper;
 import com.jrsolutions.mapserver.gis.MapperUtils;
 
 public class LineParal extends LineSimbology{

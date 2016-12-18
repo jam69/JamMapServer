@@ -12,7 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
 import javax.imageio.ImageIO;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -25,8 +27,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.params.AuthPolicy;
 import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.cache.CachingHttpClient;
-import sun.net.www.http.HttpClient;
 
 /**
  *
@@ -34,19 +34,20 @@ import sun.net.www.http.HttpClient;
  */
 	class ImageGetter implements Runnable{
 
-            static final Properties properties;
+        static final Properties properties=new Properties();
             
 		private int px;
 		private int py;
 		private final String key;
-                private final ImageObserver obs;
+        private final ImageObserver obs;
 		private BufferedImage img=null;
+		private String url;
 		
 		public ImageGetter(String key,int px, int py,ImageObserver obs){
 			this.px=px;
 			this.py=py;
 			this.key=key;
-                        this.obs=obs;
+            this.obs=obs;
 		}
 		
 		public void repos(Graphics g,int px,int py){
@@ -67,7 +68,7 @@ import sun.net.www.http.HttpClient;
 				if(resultCode==200){
 					HttpEntity entity = response.getEntity();
 					img=ImageIO.read( entity.getContent());
-					getGraphics().drawImage(img,px,py,obs);
+					img.getGraphics().drawImage(img,px,py,obs);
 				}
 			} catch (ClientProtocolException e) {
 				e.printStackTrace();
@@ -100,4 +101,5 @@ import sun.net.www.http.HttpClient;
 
       return httpClient;
     }
-        }
+        
+}

@@ -11,7 +11,6 @@ package com.jrsolutions.mapserver.index.btree2;
  */
 import java.io.EOFException;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
